@@ -34,7 +34,7 @@ public class ProductController {
     {
         repositoryInterface.createProduct(productModel);
         System.out.println(productModel.toString());
-        return "redirect:/index";
+        return "/status";
     }
 
     //index.html GET REQUEST
@@ -43,6 +43,13 @@ public class ProductController {
     public String index()
     {
         return "/index";
+    }
+
+    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    public String returnCreateProduct()
+    {
+        repositoryInterface.getReturnSuccesfully();
+        return "index";
     }
 
 }
