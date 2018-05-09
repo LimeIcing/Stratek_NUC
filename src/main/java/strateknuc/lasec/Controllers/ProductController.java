@@ -13,9 +13,12 @@ import strateknuc.lasec.Models.Repositories.ProductRepository;
 @Controller
 public class ProductController {
 
+    //this finds and creates beans
     @Autowired
     private ProductRepositoryInterface repositoryInterface = new ProductRepository();
 
+    //create.html GET REQUEST
+    //this is called when the create.html file gets refreshed
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(Model model)
     {
@@ -23,6 +26,9 @@ public class ProductController {
         return "/create";
     }
 
+    //create.html POST REQUEST
+    //this is called when a form="action" method="POST" is called
+    //i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel)
     {
@@ -30,6 +36,9 @@ public class ProductController {
         System.out.println(productModel.toString());
         return "redirect:/index";
     }
+
+    //index.html GET REQUEST
+    //this is called when index is refreshed
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index()
     {
