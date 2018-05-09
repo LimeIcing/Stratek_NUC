@@ -2,11 +2,11 @@ package strateknuc.lasec.Models;
 
 public class ProductModel {
 
-    private int ean, quantity;
-    private String name, category, manufacturer, description;
+    private int quantity;
+    private String name, ean, category, manufacturer, description;
     private double price;
 
-    public ProductModel(int ean, String name, String category, String manufacturer, int quantity, double price,
+    public ProductModel(String ean, String name, String category, String manufacturer, int quantity, double price,
                         String description) {
         this.ean = ean;
         this.name = name;
@@ -22,11 +22,11 @@ public class ProductModel {
     }
 
     // Getters & Setters
-    public int getEan() {
+    public String getEan() {
         return ean;
     }
 
-    public void setEan(int ean) {
+    public void setEan(String ean) {
         this.ean = ean;
     }
 
