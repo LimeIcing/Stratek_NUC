@@ -3,16 +3,16 @@ CREATE DATABASE stratek;
 USE stratek;
 
 CREATE TABLE customers(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+	ean INT AUTO_INCREMENT PRIMARY KEY,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE orders(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+	ean INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
     date DATETIME NOT NULL,
-    FOREIGN KEY(customer_id) REFERENCES customers(id)
+    FOREIGN KEY(customer_id) REFERENCES customers(ean)
 );
 
 CREATE TABLE categories(
@@ -35,6 +35,6 @@ CREATE TABLE product_orders(
     product_ean INT,
     quantity INT DEFAULT 1,
     PRIMARY KEY(order_id, product_ean),
-    FOREIGN KEY(order_id) REFERENCES orders(id),
+    FOREIGN KEY(order_id) REFERENCES orders(ean),
     FOREIGN KEY(product_ean) REFERENCES products(ean)
 );

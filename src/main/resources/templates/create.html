@@ -6,7 +6,7 @@
 <body>
 
 <!--
-this.id = id;
+this.ean = ean;
         this.name = name;
         this.category = category;
         this.manufacturer = manufacturer;
@@ -16,7 +16,7 @@ this.id = id;
         -->
 
 <form th:action="@{/create}" method="POST">
-    <input type="hidden" th:field="${productModel.id}"/><br/>
+    Product EAN: <input type="text" th:field="${productModel.ean}"/><br/>
     Product Name: <input type="text" th:field="${productModel.name}"/><br/>
     Product Category: <input type="text" th:field="${productModel.category}"/> <br/>
     Product Manufacturer: <input type="text" th:field="${productModel.manufacturer}"/> <br/>

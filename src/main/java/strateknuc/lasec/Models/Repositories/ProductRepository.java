@@ -16,8 +16,9 @@ public class ProductRepository implements ProductRepositoryInterface {
     public void createProduct(ProductModel p) {
 
         // Update with SQL tables - sync if anything changes (task)
-        String sql = "INSERT INTO Products(manufacturer, name, quantity, price, category, description) " +
-                "VALUES('" + p.getManufacturer() + "', '" +
+        String sql = "INSERT INTO products( ean, manufacturer, name, quantity, price, category, description) " +
+                "VALUES('" + p.getEan() + "', '"
+                + p.getManufacturer() + "', '" +
                 p.getName() + "', " +
                 p.getQuantity() + ", " +
                 p.getPrice() + ", '" +
