@@ -30,5 +30,10 @@ public class ProductController {
         System.out.println(productModel.toString());
         return "redirect:/index";
     }
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String index()
+    {
+        return "/index";
+    }
 
 }
