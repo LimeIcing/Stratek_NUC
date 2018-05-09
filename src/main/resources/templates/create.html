@@ -4,7 +4,8 @@
     <title>Create new product</title>
 </head>
 <body>
-
+<div id="container">
+<div th:insert="/fragments/header"></div>
 <!--
 this.ean = ean;
         this.name = name;
@@ -25,5 +26,14 @@ this.ean = ean;
     Product Price:  <input type="text" th:field="${productModel.price}"/> <br/>
     <input type="submit" value="Save"/>
 </form>
+</div>
 </body>
+<style>
+    #container{
+        margin: auto;
+        width: 75%;
+        border: 3px solid green;
+        padding: 10px;
+    }
+</style>
 </html>

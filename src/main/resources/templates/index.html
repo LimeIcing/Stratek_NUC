@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Title</title>
+    <title>Startek</title>
 </head>
 <body>
+<div id="container">
+    <div th:insert="/fragments/header"></div>
+    <div id="content"></div>
+</div>
 
 </body>
+<style>
+    #container{
+        margin: auto;
+        width: 75%;
+        border: 3px solid green;
+        padding: 10px;
+    }
+</style>
 </html>
