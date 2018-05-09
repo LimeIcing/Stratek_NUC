@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Create new product</title>
+</head>
+<body>
+<form th:action="@{/create}" method="POST">
+    ID: <input type="hidden" th:field="${productModel.id}"/><br/>
+    Product Quantity: <input type="text" th:field="${productModel.quantity}"/><br/>
+    Product Name: <input type="text" th:field="${productModel.name}"/><br/>
+    Product Category: <input type="text" th:field="${productModel.category}"/> <br/>
+    Product Manufacturer: <input type="text" th:field="${productModel.manufacturer}"/> <br/>
+    Product Description:  <input type="text" th:field="${productModel.description}"/> <br/>
+    Product Price:  <input type="text" th:field="${productModel.price}"/> <br/>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>
