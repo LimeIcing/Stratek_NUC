@@ -17,24 +17,19 @@ this.ean = ean;
         -->
 
 <form th:action="@{/create}" method="POST">
-    Product EAN: <input type="text" th:field="${productModel.ean}"/><br/>
-    Product Name: <input type="text" th:field="${productModel.name}"/><br/>
-    Product Category: <input type="text" th:field="${productModel.category}"/> <br/>
-    Product Manufacturer: <input type="text" th:field="${productModel.manufacturer}"/> <br/>
-    Product Quantity: <input type="text" th:field="${productModel.quantity}"/><br/>
-    Product Description:  <input type="text" th:field="${productModel.description}"/> <br/>
-    Product Price:  <input type="text" th:field="${productModel.price}"/> <br/>
+    Product EAN: <input type="text" th:field="${productModel.ean}" required/><br/>
+    Product Name: <input type="text" th:field="${productModel.name}" required/><br/>
+    Product Category: <input type="text" th:field="${productModel.category}" required/> <br/>
+    Product Manufacturer: <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
+    Product Quantity: <input type="text" th:field="${productModel.quantity}" required/><br/>
+    Product Description:  <input type="text" th:field="${productModel.description}" required/> <br/>
+    Product Price:  <input type="text" th:field="${productModel.price}" required/> <br/>
     <input type="submit" value="Save"/>
 </form>
 </div>
 </body>
 <style>
-    #container{
-        margin: auto;
-        width: 75%;
-        border: 3px solid green;
-        padding: 10px;
-    }
+
 
 </style>
 </html>
