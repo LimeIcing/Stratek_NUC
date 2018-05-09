@@ -2,13 +2,13 @@ package strateknuc.lasec.Models;
 
 public class ProductModel {
 
-    private int id, quantity;
+    private int ean, quantity;
     private String name, category, manufacturer, description;
     private double price;
 
-    public ProductModel(int id, String name, String category, String manufacturer, int quantity, double price,
+    public ProductModel(int ean, String name, String category, String manufacturer, int quantity, double price,
                         String description) {
-        this.id = id;
+        this.ean = ean;
         this.name = name;
         this.category = category;
         this.manufacturer = manufacturer;
@@ -22,12 +22,12 @@ public class ProductModel {
     }
 
     // Getters & Setters
-    public int getId() {
-        return id;
+    public int getEan() {
+        return ean;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEan(int ean) {
+        this.ean = ean;
     }
 
     public String getName() {
