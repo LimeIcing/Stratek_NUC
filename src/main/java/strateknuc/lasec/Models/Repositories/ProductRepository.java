@@ -38,12 +38,12 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public String isProductSaved(int rowsAffected, String productName) {
 
-        if(rowsAffected == 1) {
-            return productName + "has been created successfully!";
+        if(rowsAffected != 1) {
+            return productName + "was not created, try again";
         }
         //integrate with SQLException
         else{
-            return productName + " was not created, try again";
+            return productName + " was created successfully ";
         }
     }
 
