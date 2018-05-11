@@ -23,6 +23,7 @@ public class ProductController {
     public String create(Model model)
     {
         model.addAttribute("productModel", new ProductModel());
+        System.out.println("return create");
         return "/create";
     }
 
@@ -34,7 +35,8 @@ public class ProductController {
     {
         repositoryInterface.createProduct(productModel);
         System.out.println(productModel.toString());
-        return "/status";
+        //redirect is used to switch pages
+        return "redirect:/status";
     }
 
     //index.html GET REQUEST
