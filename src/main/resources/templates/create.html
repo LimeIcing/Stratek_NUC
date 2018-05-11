@@ -8,14 +8,14 @@
 
     <div th:include="fragments/header :: nav_top"></div>
 
-<form th:action="@{/create}" method="POST">
-    Product EAN: <input type="text" th:field="${productModel.ean}" required/><br/>
-    Product Name: <input type="text" th:field="${productModel.name}" required/><br/>
-    Product Category: <input type="text" th:field="${productModel.category}" required/> <br/>
-    Product Manufacturer: <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
-    Product Quantity: <input type="text" th:field="${productModel.quantity}" required/><br/>
-    Product Description:  <input type="text" th:field="${productModel.description}" required/> <br/>
-    Product Price:  <input type="text" th:field="${productModel.price}" required/> <br/>
+<form id="form" th:action="@{/create}" method="POST">
+    <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
+    <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
+    <p>Product Category:</p> <input type="text" th:field="${productModel.category}" required/> <br/>
+    <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
+    <p>Product Quantity:</p> <input type="text" th:field="${productModel.quantity}" required/><br/>
+    <p>Product Description:</p>  <input type="text" th:field="${productModel.description}" required/> <br/>
+    <p>Product Price:</p>  <input type="text" th:field="${productModel.price}" required/> <br/>
     <input type="submit" value="Save"/>
 </form>
 </div>
