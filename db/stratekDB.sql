@@ -1,13 +1,16 @@
+-- AUTHOR(S): ECS
 DROP DATABASE IF EXISTS stratek;
 CREATE DATABASE stratek;
 USE stratek;
 
+-- AUTHOR(S): ECS
 CREATE TABLE customers(
 	email VARCHAR(50) PRIMARY KEY,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50) NOT NULL
 );
 
+-- AUTHOR(S): ECS
 CREATE TABLE orders(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     customer_email VARCHAR(50),
@@ -15,10 +18,12 @@ CREATE TABLE orders(
     FOREIGN KEY(customer_email) REFERENCES customers(email)
 );
 
+-- AUTHOR(S): ECS
 CREATE TABLE categories(
 	name VARCHAR(25) PRIMARY KEY
 );
 
+-- AUTHOR(S): ECS
 CREATE TABLE products(
 	ean VARCHAR(13) PRIMARY KEY,
     manufacturer VARCHAR(20) NOT NULL,
@@ -30,6 +35,7 @@ CREATE TABLE products(
     FOREIGN KEY(category) REFERENCES categories(name)
 );
 
+-- AUTHOR(S): ECS
 CREATE TABLE product_orders(
 	order_id INT,
     product_ean VARCHAR(13),
