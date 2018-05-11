@@ -1,6 +1,7 @@
 package strateknuc.lasec.Models.Repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
@@ -47,11 +48,5 @@ public class ProductRepository implements ProductRepositoryInterface {
         else{
             return productName + " was created successfully ";
         }
-    }
-
-    //AUTHOR: AP
-    @Autowired
-    public String getReturnSuccesfully() {
-        return returnSuccesfully;
     }
 }
