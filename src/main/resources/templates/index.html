@@ -4,18 +4,13 @@
     <title>Startek</title>
 </head>
 <body>
-<!--<div id="container">
-    <div th:insert="/fragments/header"></div>
+<div id="container">
+    <div th:include="fragments/header :: nav_top"></div>
     <div id="content"></div>
 </div>
 
 </body>
-<style>
-    #container{
-        margin: auto;
-        width: 75%;
-        border: 3px solid green;
-        padding: 10px;
-    }
+<style th:include="fragments/header :: style">
+
 </style>
-</html> -->
+</html>
