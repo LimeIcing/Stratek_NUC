@@ -11,14 +11,15 @@ import java.sql.SQLException;
 @Repository
 public class ProductRepository implements ProductRepositoryInterface {
 
+    //AUTHOR: AP, LKB
     @Autowired
     private JdbcTemplate jdbc;
 
     private String returnSuccesfully;
 
+    //AUTHOR: AP, LKB
     @Override
-    public void createProduct(ProductModel p)
-    {
+    public void createProduct(ProductModel p) {
 
         // Update with SQL tables - sync if anything changes (task)
         String sql = "INSERT INTO products( ean, manufacturer, name, quantity, price, category, description) " +
@@ -35,6 +36,7 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("Rows affected: " + rowsAffected);
     }
 
+    //AUTHOR: AP,LKB
     @Override
     public String isProductSaved(int rowsAffected, String productName) {
 
@@ -47,6 +49,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         }
     }
 
+    //AUTHOR: AP
     @Autowired
     public String getReturnSuccesfully() {
         return returnSuccesfully;
