@@ -53,7 +53,6 @@ public class ProductController {
     @RequestMapping(value = "/status", method = RequestMethod.GET)
     public String returnCreateProduct()
     {
-        repositoryInterface.getReturnSuccesfully();
         return "status";
     }
 

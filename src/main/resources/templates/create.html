@@ -4,17 +4,8 @@
     <title>Create new product</title>
 </head>
 <body>
-<!--<div id="container">
+<div id="container">
 <div th:insert="/fragments/header"></div>
-<!--
-this.ean = ean;
-        this.name = name;
-        this.category = category;
-        this.manufacturer = manufacturer;
-        this.quantity = quantity;
-        this.price = price;
-        this.description = description;
-        -->
 
 <form th:action="@{/create}" method="POST">
     Product EAN: <input type="text" th:field="${productModel.ean}" required/><br/>
