@@ -1,10 +1,12 @@
+-- AUTHOR(S): ECS
 INSERT INTO customers
 VALUES
 	('bogholderi@delfinen.dk', 'Else', 'Thomsen'),
     ('lkof67@yahoo.com', 'Lise', 'Kofoed'),
     ('phelbsfan54@outlook.dk', 'John', 'Smith'),
     ('fuckseaworld@gmail.com', 'Bob', 'Williams');
-    
+
+-- AUTHOR(S): ECS    
 INSERT INTO orders(customer_email)
 VALUES
 	('phelbsfan54@outlook.dk'),
@@ -18,6 +20,7 @@ VALUES
     ('bogholderi@delfinen.dk'),
     ('fuckseaworld@gmail.com');
 
+-- AUTHOR(S): ECS
 INSERT INTO categories
 VALUES
 	('NUC'),
@@ -27,6 +30,7 @@ VALUES
     ('SSD'),
     ('RAM');
 
+-- AUTHOR(S): ECS
 INSERT INTO products
 VALUES
 	('0675901407687', 'Intel',			'NUC7I3BNH - Core i3 & 2.5" / M.2',					8,	1948,	'NUC',		'Intel NUC (The Next Unit of Computing), 2.4 GHz Intel Core i3-7100U Dual Core CPU (7. generations Core arkitektur - Baby Canyon), Uden RAM (SODIMM RAM DDR4-2133 - 2 x DIMM slots), Uden harddisk (OBS kræver M.2 2242 (42mm) / M.2 2280 (80mm) SSD & 1 x SATA-600 HDD / SSD), Indbygget Intel HD Graphics 620 grafikkort, 100/1000 MBIT netværk, Intel Dual-Band Wireless-AC 802.11ac trådløst netværk & Bluetooth 4.2, HDMI 2.0 / Mini DisplayPort 1.2 (via USB-C stik) tilslutning, 8 kanals surround lydkort'),
@@ -66,4 +70,29 @@ VALUES
     ('0843591068161', 'Corsair',		'VS SO DDR4-2133 DC - 16GB',						0,	1552,	'RAM',		'Hukommelse (RAM), 16 GB: 2 x 8 GB (Dual Channel), SODIMM 260-pin (til bærbar), DDR4, 2133 MHz / PC4-17000, CL15-15-15-36, 1.2 V, ikke bufferet, Ikke-paritet'),
     ('0740617242461', 'Kingston',		'HyperX Impact DDR4-2133 DC 8GB',					1,	785,	'RAM',		'Hukommelse (RAM), 8 GB: 2 x 4 GB (Dual Channel), SODIMM 260-pin (til bærbar), DDR4, 2133 MHz / PC4-17000, CL13-13-13, 1.2 V, ikke bufferet, Ikke-paritet');
 
-SELECT * FROM products ORDER BY name
+-- AUTHOR(S): ECS
+INSERT INTO product_orders(order_id, product_ean) 
+VALUES
+	(1, '5099206073029'),
+    (1, '0740617242461'),
+    (1, '0887942152888'),
+    (2, '5397063744220'),
+    (2, '8806088933986'),
+    (3, '0740617261219'),
+    (3, '5099206046849'),
+    (3, '5099206023918'),
+    (4, '0740617242461'),
+    (4, '8806087605099'),
+    (4, '5099206025660'),
+    (5, '0675901407427'),
+    (5, '0740617261219'),
+    (5, '0855800001524'),
+    (6, '8806087605099'),
+    (6, '5032037088770'),
+    (6, '8806088933986'),
+    (7, '0675901407632'),
+    (8, '5397063744220'),
+    (9, '5397063744220'),
+    (9, '8806088933986'),
+    (9, '0675901407687'),
+    (10, '5099206072558');
