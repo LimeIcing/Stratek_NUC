@@ -72,19 +72,20 @@ public class ProductRepository implements ProductRepositoryInterface {
         return product;
     }
 
-    // AUTHOR: LKB
+    // AUTHOR(S): LKB, ECS
+    // Returns a list of products from the db
     public List<ProductModel> get() {
 
         List<ProductModel> products = new ArrayList<>();
 
-        String sql = "SELECT * FROM products";
+        String sql = "SELECT * FROM product_list";
 
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {
-            products.add(new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
-                    rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7)));
+            products.add(new ProductModel(rs.getString(1), rs.getDouble(2)));
         }
+
         return products;
     }
 }

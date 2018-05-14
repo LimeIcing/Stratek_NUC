@@ -19,9 +19,16 @@ public class ProductModel {
         this.description = description;
     }
 
-    //AUTHOR: LKB
+    // AUTHOR: LKB
     public ProductModel() {
 
+    }
+
+    // AUTHOR(S): ECS
+    // Constructor used to get a list of products
+    public ProductModel(String name, double price) {
+        this.name = name;
+        this.price = price;
     }
 
     // Getters & Setters

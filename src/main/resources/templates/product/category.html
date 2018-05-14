@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Startek</title>
+    <title>Stratek</title>
 </head>
 <body>
 <div id="container">
@@ -9,22 +9,12 @@
     <div id="content">
         <table>
             <tr>
-                <th>Product EAN</th>
                 <th>Product Name</th>
-                <th>Product Manufacturer</th>
-                <th>Product Quantity</th>
                 <th>Product Price</th>
-                <th>Product Category</th>
-                <th>Product Description</th>
             </tr>
             <tr th:each="product : ${products}">
-                <td th:text="${product.ean}"></td>
                 <td th:text="${product.name}"></td>
-                <td th:text="${product.manufacturer}"></td>
-                <td th:text="${product.quantity}"></td>
                 <td th:text="${product.price}"></td>
-                <td th:text="${product.category}"></td>
-                <td th:text="${product.description}"></td>
             </tr>
         </table>
 
