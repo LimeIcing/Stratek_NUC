@@ -7,10 +7,11 @@
 <div id="container">
     <div th:include="fragments/header :: nav_top"></div>
     <div id="content">
-        <table>
+        <table id="products">
             <tr th:each="product : ${products}">
                 <td th:text="${product.name}"></td>
                 <td th:text="${'kr. ' + product.price}"></td>
+                <td><button>Køb</button></td>
             </tr>
         </table>
 

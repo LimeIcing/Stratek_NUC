@@ -4,11 +4,26 @@
 <div id="nav_top" th:fragment="nav_top"  >
     <ul>
         <li><a href="/index">Home</a></li>
-        <li><a href="/admin/create">Create</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Produkter</a>
+            <div class="dropdown-content">
+                <a href="/product/category/Mus">Mus</a>
+                <a href="/product/category/NUC">NUC</a>
+                <a href="/product/category/RAM">RAM</a>
+                <a href="/product/category/Skærm">Skærm</a>
+                <a href="/product/category/SSD">SSD</a>
+                <a href="/product/category/Tastatur">Tastatur</a>
+            </div>
+        </li>
+        <li><a href="/admin/index">Admin</a></li>
     </ul>
 </div>
 </body>
 <style th:fragment="style">
+    body{
+        background-color: #f3f3f3;
+        font-family: "intel-clear","tahoma",Helvetica,"helvetica",Arial,sans-serif;
+    }
     #container{
         margin: auto;
         width: 75%;
@@ -37,9 +52,40 @@
         background-color: #008CBA;
         color: #f3f3f3;
     }
-    body{
-        background-color: #f3f3f3;
-        font-family: "intel-clear","tahoma",Helvetica,"helvetica",Arial,sans-serif;
+    li.dropdown {
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: #252525;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    .dropdown-content a:hover {background-color: #008CBA}
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    li a, .dropbtn {
+        display: inline-block;
+        color: #f3f3f3;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover, .dropdown:hover .dropbtn {
+        background-color: #008CBA;
     }
     input[type=text], select {
         width: 100%;
@@ -92,6 +138,28 @@
     .grid-container > a:active{
         color: #f5f5f5;
         background-color: #006CBA;
+    }
+    #products {
+        padding-top: 10px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #products  td, #products  th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #products  tr:nth-child(even){background-color: #f2f2f2;}
+
+    #products  tr:hover {background-color: #ddd;}
+
+    #products  th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
     }
 
 

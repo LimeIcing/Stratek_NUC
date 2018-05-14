@@ -38,7 +38,7 @@ public class ProductController {
     {
         repository.createProduct(productModel);
         //redirect is used to switch pages
-        return "redirect:/admin/status";
+        return "/admin/create";
     }
 
     //AUTHOR: AP
@@ -48,6 +48,12 @@ public class ProductController {
     public String index()
     {
         return "/index";
+    }
+
+    @RequestMapping(value = "/product/index", method = RequestMethod.GET)
+    public String productIndex()
+    {
+        return "/product/index";
     }
 
     //AUTHOR: AP
