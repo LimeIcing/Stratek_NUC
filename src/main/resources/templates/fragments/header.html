@@ -35,7 +35,7 @@
     }
     li a:hover {
         background-color: #008CBA;
-        color: white;
+        color: #f3f3f3;
     }
     body{
         background-color: #f3f3f3;
@@ -75,14 +75,23 @@
         display: grid;
         grid-template-columns: auto auto auto;
         grid-gap: 10px;
-        padding: 10px;
+        padding-top: 10px;
     }
-    .grid-container > div {
-        border: 1px solid black;
-        text-decoration: none;
+    .grid-container > a {
+        background-color: #008CBA;
         text-align: center;
         font-size: 30px;
         padding : 10px;
+        text-decoration: none;
+        color: #f3f3f3;
+    }
+    .grid-container > a{
+        color: #f3f3f3;
+        text-decoration: none;
+    }
+    .grid-container > a:active{
+        color: #f5f5f5;
+        background-color: #006CBA;
     }
 
 
