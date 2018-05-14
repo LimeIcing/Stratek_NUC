@@ -16,7 +16,7 @@ public class ProductController {
     //this finds and creates beans
     //AUTHOR: AP
     @Autowired
-    private ProductRepositoryInterface repositoryInterface = new ProductRepository();
+    private ProductRepositoryInterface repository = new ProductRepository();
 
     //AUTHOR: AP
     //create.html GET REQUEST
@@ -35,7 +35,7 @@ public class ProductController {
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel)
     {
-        repositoryInterface.createProduct(productModel);
+        repository.createProduct(productModel);
         //redirect is used to switch pages
         return "redirect:/admin/status";
     }
@@ -59,7 +59,7 @@ public class ProductController {
     //AUTHOR: LKB
     @RequestMapping(value = "/product/category", method = RequestMethod.GET)
     public String productIndex (Model model) {
-        model.addAttribute("products", repositoryInterface.get());
+        model.addAttribute("products", repository.get());
         return "/product/category";
     }
 
