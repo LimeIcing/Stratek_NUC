@@ -56,4 +56,11 @@ public class ProductController {
         return "status";
     }
 
+    //AUTHOR: LKB
+    @RequestMapping(value = "/products/", method = RequestMethod.GET)
+    public String productIndex (Model model) {
+        model.addAttribute("products", repositoryInterface.get());
+        return "index";
+    }
+
 }
