@@ -9,5 +9,5 @@ public interface ProductRepositoryInterface
     void createProduct(ProductModel p);
     String isProductSaved(int rowsAffected, String productName);
     ProductModel get(String ean);
-    List<ProductModel> get();
+    List<ProductModel> getList(String category);
 }

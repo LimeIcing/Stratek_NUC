@@ -74,11 +74,11 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): LKB, ECS
     // Returns a list of products from the db
-    public List<ProductModel> get() {
+    public List<ProductModel> getList(String category) {
 
         List<ProductModel> products = new ArrayList<>();
 
-        String sql = "SELECT * FROM product_list";
+        String sql = "SELECT * FROM product_list WHERE category = '" + category + "'";
 
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
@@ -57,9 +58,9 @@ public class ProductController {
     }
 
     //AUTHOR: LKB
-    @RequestMapping(value = "/product/category", method = RequestMethod.GET)
-    public String productIndex (Model model) {
-        model.addAttribute("products", repository.get());
+    @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
+    public String productIndex (Model model, @PathVariable(value = "category") String category) {
+        model.addAttribute("products", repository.getList(category));
         return "/product/category";
     }
 
