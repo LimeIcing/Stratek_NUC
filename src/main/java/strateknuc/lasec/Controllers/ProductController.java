@@ -21,23 +21,23 @@ public class ProductController {
     //AUTHOR: AP
     //create.html GET REQUEST
     //this is called when the create.html file gets refreshed
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/create", method = RequestMethod.GET)
     public String create(Model model)
     {
         model.addAttribute("productModel", new ProductModel());
-        return "/create";
+        return "/admin/create";
     }
 
     //AUTHOR: AP
     //create.html POST REQUEST
     //this is called when a form="action" method="POST" is called
     //i.e when a button gets pressed and sends data further
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel)
     {
         repositoryInterface.createProduct(productModel);
         //redirect is used to switch pages
-        return "redirect:/status";
+        return "redirect:/admin/status";
     }
 
     //AUTHOR: AP
@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     //AUTHOR: AP
-    @RequestMapping(value = "/status", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/status", method = RequestMethod.GET)
     public String returnCreateProduct()
     {
         return "status";
