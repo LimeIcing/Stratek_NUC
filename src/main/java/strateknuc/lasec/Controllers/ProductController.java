@@ -57,7 +57,7 @@ public class ProductController {
         return "status";
     }
 
-    //AUTHOR: LKB
+    // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
     public String productIndex (Model model, @PathVariable(value = "category") String category) {
         model.addAttribute("products", repository.getList(category));
