@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:include="/fragments/adminStyle :: sidenav"></div>
+<div id="content">
+    <h1>Admin Page</h1>
+    <table id="products">
+        <tr th:each="product : ${products}">
+            <td th:text="${product.name}"></td>
+            <td th:text="${'kr. ' + product.price}"></td>
+            <td><button id="buy">Køb</button></td>
+        </tr>
+    </table>
+
+</div>
+
+
+</body>
+<style th:include="/fragments/adminStyle :: adminStyle">
+
+</style>
+</html>
