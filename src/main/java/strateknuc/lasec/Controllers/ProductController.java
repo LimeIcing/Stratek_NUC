@@ -42,7 +42,7 @@ public class ProductController {
     public String create(@ModelAttribute ProductModel productModel) {
         productRepository.createProduct(productModel);
         //redirect is used to switch pages
-        return "/admin/create";
+        return "/admin/index";
     }
 
     //AUTHOR: AP
