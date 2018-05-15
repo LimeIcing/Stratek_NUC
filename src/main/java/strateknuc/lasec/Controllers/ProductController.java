@@ -78,4 +78,10 @@ public class ProductController {
         return "/product/category";
     }
 
+    // AUTHOR(S): LKB, ECS, CPS
+    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
+    public String adminProducts (Model model) {
+        model.addAttribute("products", productRepository.getList());
+        return "/admin/edit";
+    }
 }
