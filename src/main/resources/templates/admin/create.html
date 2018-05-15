@@ -4,23 +4,26 @@
     <title>Create new product</title>
 </head>
 <body>
-<div id="container">
-
-    <div th:include="fragments/pageStyle :: nav_top"></div>
-
-<form id="form" th:action="@{/admin/index}" method="POST">
-    <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
-    <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
-    <p>Product Category:</p> <input type="text" th:field="${productModel.category}" required/> <br/>
-    <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
-    <p>Product Quantity:</p> <input type="text" th:field="${productModel.quantity}" required/><br/>
-    <p>Product Description:</p>  <input type="text" th:field="${productModel.description}" required/> <br/>
-    <p>Product Price:</p>  <input type="text" th:field="${productModel.price}" required/> <br/>
-    <input type="submit" value="Save"/>
-</form>
+<div th:include="/fragments/adminStyle :: sidenav"></div>
+<div id="content">
+    <h1>Opret Produkt</h1>
+    <form id="form" th:action="@{/admin/index}" method="POST">
+        <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
+        <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
+        <p>Product Category:</p> <input type="text" th:field="${productModel.category}" required/> <br/>
+        <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
+        <p>Product Quantity:</p> <input type="text" th:field="${productModel.quantity}" required/><br/>
+        <p>Product Description:</p>  <input type="text" th:field="${productModel.description}" required/> <br/>
+        <p>Product Price:</p>  <input type="text" th:field="${productModel.price}" required/> <br/>
+        <input type="submit" value="Save"/>
+    </form>
 </div>
+
+
+
+
 </body>
-<style th:include="fragments/pageStyle :: style">
+<style th:include="/fragments/adminStyle :: adminStyle">
 
 </style>
 </html>
