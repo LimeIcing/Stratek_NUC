@@ -8,7 +8,7 @@
 
     <div th:include="fragments/pageStyle :: nav_top"></div>
 
-<form id="form" th:action="@{/admin/index}" method="POST">
+<form id="form" th:action="@{/admin/create}" method="POST">
     <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
     <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
     <p>Product Category:</p> <select th:field="*{productModel.category}">
