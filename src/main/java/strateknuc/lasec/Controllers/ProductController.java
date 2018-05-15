@@ -56,6 +56,12 @@ public class ProductController {
         return "/product/index";
     }
 
+    @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
+    public String adminIndex()
+    {
+        return "/admin/index";
+    }
+
     //AUTHOR: AP
     @RequestMapping(value = "/admin/status", method = RequestMethod.GET)
     public String returnCreateProduct()

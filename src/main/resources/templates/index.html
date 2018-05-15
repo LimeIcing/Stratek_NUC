@@ -2,11 +2,10 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Stratek</title>
-
 </head>
 <body>
 <div id="container">
-    <div th:include="fragments/header :: nav_top"></div>
+    <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
         <div class="grid-container">
             <a href="product/category/Mus">Mus</a>
@@ -15,16 +14,9 @@
             <a href="product/category/Skærm">Skærm</a>
             <a href="product/category/SSD">SSD</a>
             <a href="product/category/Tastatur">Tastatur</a>
-
         </div>
-
     </div>
 </div>
-
 </body>
-<style th:include="fragments/header :: style">
-
-</style>
-
-
+<style th:include="fragments/header :: style"></style>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div id="sidenav" th:fragment="sidenav">
+    <ul>
+        <li>
+           <a href="/admin/index">Home</a>
+            <a href="/admin/create">Opret Produkt</a>
+            <a href="/index">Afslut</a>
+        </li>
+    </ul>
+
+</div>
+</body>
+<style th:fragment="adminStyle">
+    body{
+        background-color: #f3f3f3;
+        font-family: "intel-clear","tahoma",Helvetica,"helvetica",Arial,sans-serif;
+    }
+    /* Style the side navigation */
+    ul {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding: 0px;
+        margin: 0px;
+        float: left;
+    }
+    /* Side navigation links */
+    ul li a {
+        color: white;
+        padding: 16px;
+        color: #f3f3f3;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+    }
+
+    /* Change color on hover */
+    ul li a:hover {
+        background-color: #b82b00;
+        color: #f3f3f3;
+    }
+
+    /* Style the content */
+    #content {
+        margin-left: 250px;
+        float: left;
+    }
+</style>
+</html>
