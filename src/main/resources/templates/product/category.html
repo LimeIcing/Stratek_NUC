@@ -5,7 +5,7 @@
 </head>
 <body>
 <div id="container">
-    <div th:include="fragments/header :: nav_top"></div>
+    <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
         <table id="products">
             <tr th:each="product : ${products}">
@@ -19,7 +19,7 @@
 </div>
 
 </body>
-<style th:include="fragments/header :: style">
+<style th:include="fragments/pageStyle :: style">
 
 </style>
 </html>

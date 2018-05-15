@@ -6,7 +6,7 @@
 <body>
 <div id="container">
 
-    <div th:include="fragments/header :: nav_top"></div>
+    <div th:include="fragments/pageStyle :: nav_top"></div>
 
 <form id="form" th:action="@{/admin/index}" method="POST">
     <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
@@ -20,7 +20,7 @@
 </form>
 </div>
 </body>
-<style th:include="fragments/header :: style">
+<style th:include="fragments/pageStyle :: style">
 
 </style>
 </html>
