@@ -11,7 +11,13 @@
 <form id="form" th:action="@{/admin/index}" method="POST">
     <p>Product EAN:</p> <input type="text" th:field="${productModel.ean}" required/><br/>
     <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
-    <p>Product Category:</p> <input type="text" th:field="${productModel.category}" required/> <br/>
+    <p>Product Category:</p> <select th:field="*{productModel.category}">
+    <option value="">--</option>
+    <option th:each="option : ${options}"
+            th:value="${option.name}"
+            th:text="${option.name}">
+    </option>
+</select> <br/>
     <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
     <p>Product Quantity:</p> <input type="text" th:field="${productModel.quantity}" required/><br/>
     <p>Product Description:</p>  <input type="text" th:field="${productModel.description}" required/> <br/>

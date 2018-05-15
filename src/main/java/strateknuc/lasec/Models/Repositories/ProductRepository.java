@@ -74,6 +74,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): LKB, ECS
     // Returns a list of products from the db
+    @Override
     public List<ProductModel> getList(String category) {
 
         List<ProductModel> products = new ArrayList<>();
