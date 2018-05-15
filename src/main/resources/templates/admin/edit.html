@@ -9,10 +9,23 @@
 <div id="content">
     <h1>Admin Page</h1>
     <table id="products">
+        <tr>
+            <th>Kategori</th>
+            <th>Produkt</th>
+            <th>Antal</th>
+            <th>Pris</th>
+            <th>EAN</th>
+            <th></th>
+            <th></th>
+        </tr>
         <tr th:each="product : ${products}">
+            <td th:text="${product.category}"></td>
             <td th:text="${product.name}"></td>
+            <td th:text="${product.quantity}"></td>
             <td th:text="${'kr. ' + product.price}"></td>
-            <td><button id="buy">Køb</button></td>
+            <td th:text="${product.ean}"></td>
+            <td><button id="edit">Redigér</button></td>
+            <td><button id="delete">Slet</button></td>
         </tr>
     </table>
 

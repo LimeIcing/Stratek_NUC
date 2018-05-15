@@ -81,7 +81,7 @@ public class ProductController {
     // AUTHOR(S): ECS
     @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
     public String adminProducts (Model model) {
-        model.addAttribute("products", productRepository.getList());
+        model.addAttribute("products", productRepository.getAdminList());
         return "/admin/edit";
     }
 }

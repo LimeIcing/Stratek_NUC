@@ -5,3 +5,13 @@ SELECT
     category
 FROM products
 ORDER BY name;
+
+CREATE VIEW product_list_admin AS
+SELECT
+	ean,
+	CONCAT(manufacturer,' ' , name) AS name,
+    quantity,
+    price,
+    category
+FROM products
+ORDER BY category, name;
