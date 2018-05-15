@@ -19,7 +19,7 @@
     </select> <br/>
         <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
         <p>Product Quantity:</p> <input type="text" th:field="${productModel.quantity}" required/><br/>
-        <p>Product Description:</p>  <input type="text" th:field="${productModel.description}" required/> <br/>
+        <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}" required/> <br/>
         <p>Product Price:</p>  <input type="text" th:field="${productModel.price}" required/> <br/>
         <input type="submit" value="Save"/>
     </form>
