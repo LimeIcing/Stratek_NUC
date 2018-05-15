@@ -3,4 +3,5 @@ SELECT
 	CONCAT(manufacturer,' ' , name) AS name,
     price,
     category
-FROM products;
+FROM products
+ORDER BY name;
