@@ -45,32 +45,6 @@ public class ProductController {
         return "/admin/index";
     }
 
-    //AUTHOR: AP
-    //index.html GET REQUEST
-    //this is called when index is refreshed
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index() {
-        return "/index";
-    }
-
-    @RequestMapping(value = "/product/index", method = RequestMethod.GET)
-    public String productIndex() {
-        return "/product/index";
-    }
-
-    @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-    public String adminIndex()
-    {
-        return "/admin/index";
-    }
-
-    //AUTHOR: AP
-    @RequestMapping(value = "/admin/status", method = RequestMethod.GET)
-    public String returnCreateProduct()
-    {
-        return "status";
-    }
-
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
     public String productIndex (Model model, @PathVariable(value = "category") String category) {
