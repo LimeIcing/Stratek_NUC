@@ -63,21 +63,22 @@ public class ProductController {
         return "redirect:/admin/editList";
     }
 
-    // AUTHOR(S): ECS
-    // editProduct.html POST REQUEST
-    // this is called when a form="action" method="POST" is called
-    // i.e when a button gets pressed and sends data further
-    @RequestMapping(value = "/admin/delete/", method = RequestMethod.POST)
-    public String delete(String ean) {
-        productRepository.deleteProduct(ean);
-        return "redirect:/admin/editList";
-    }
     // AUTHOR(S): CPS
     //Mapping for Delete page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.GET)
     public String delete(Model model, @PathVariable(value = "ean") String ean) {
         model.addAttribute("product", productRepository.get(ean));
         return "/admin/delete";
+    }
+
+    // AUTHOR(S): ECS
+    // editProduct.html POST REQUEST
+    // this is called when a form="action" method="POST" is called
+    // i.e when a button gets pressed and sends data further
+    @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.POST)
+    public String delete(@PathVariable(value = "ean") String ean) {
+        productRepository.deleteProduct(ean);
+        return "redirect:/admin/editList";
     }
 
     // AUTHOR(S): LKB, ECS, CPS
@@ -93,9 +94,4 @@ public class ProductController {
         model.addAttribute("products", productRepository.getAdminList());
         return "/admin/editList";
     }
-
-
-
-
-
 }
