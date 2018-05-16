@@ -59,7 +59,7 @@ public class ProductRepository implements ProductRepositoryInterface {
     public void deleteProduct(String ean) {
 
         String sql = "DELETE FROM products " +
-                "WHERE ean = " + ean;
+                "WHERE ean = " + "'" + ean + "'";
 
         jdbc.update(sql);
     }
