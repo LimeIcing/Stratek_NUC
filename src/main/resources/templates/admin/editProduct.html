@@ -16,7 +16,7 @@
             <label>Kategori</label>
                 <label th:text="${product.category}"></label>
             <select th:field="*{category}">
-                <option value="">--</option>
+                
                 <option th:each="option : ${options}"
                         th:value="${option.name}"
                         th:text="${option.name}">
