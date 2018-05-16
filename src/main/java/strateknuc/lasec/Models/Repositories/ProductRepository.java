@@ -50,7 +50,8 @@ public class ProductRepository implements ProductRepositoryInterface {
                 "quantity = " + p.getQuantity() + ", " +
                 "price = " + p.getPrice() + ", " +
                 "category = " + "'" + p.getCategory() + "', " +
-                "description =" + "'" + p.getDescription() + "'";
+                "description =" + "'" + p.getDescription() + "'" +
+                "WHERE ean = '" + p.getEan() + "'";
 
         jdbc.update(sql);
     }
