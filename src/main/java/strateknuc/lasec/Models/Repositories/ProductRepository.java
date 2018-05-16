@@ -15,13 +15,13 @@ import java.util.List;
 @Repository
 public class ProductRepository implements ProductRepositoryInterface {
 
-    //AUTHOR: AP, LKB
+    // AUTHOR: AP, LKB
     @Autowired
     private JdbcTemplate jdbc;
 
     private String returnSuccesfully;
 
-    //AUTHOR: AP, LKB
+    // AUTHOR(S): AP, LKB
     @Override
     public void createProduct(ProductModel p) {
 
@@ -40,14 +40,30 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("Rows affected: " + rowsAffected);
     }
 
-    //AUTHOR: AP,LKB
+    // AUTHOR(S): ECS
+    @Override
+    public void updateProduct(ProductModel p) {
+
+        // Update with SQL tables - sync if anything changes (task)
+        String sql = "UPDATE products " +
+                "SET manufacturer = " + p.getManufacturer() +
+                "name = " + p.getName() +
+                "quantity = " + p.getQuantity() +
+                "price = " + p.getPrice() +
+                "category = " + p.getCategory() +
+                "description =" + p.getDescription();
+
+        jdbc.update(sql);
+    }
+
+    // AUTHOR: AP,LKB
     @Override
     public String isProductSaved(int rowsAffected, String productName) {
 
         if(rowsAffected != 1) {
             return productName + "was not created, try again";
         }
-        //integrate with SQLException
+        // integrate with SQLException
         else{
             return productName + " was created successfully ";
         }

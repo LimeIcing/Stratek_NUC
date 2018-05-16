@@ -23,26 +23,35 @@ public class ProductController {
     @Autowired
     private CategoryRepositoryInterface categoryRepository = new CategoryRepository();
 
-    // AUTHOR: AP, ECS
+    // AUTHOR(S): AP, ECS
     // create.html GET REQUEST
     // this is called when the create.html file gets refreshed
     @RequestMapping(value = "/admin/create", method = RequestMethod.GET)
-    public String create(Model model, Model categoryModel)
-    {
+    public String create(Model model, Model categoryModel) {
         model.addAttribute("productModel", new ProductModel());
         categoryModel.addAttribute("options", categoryRepository.get());
         return "/admin/create";
     }
 
-    // AUTHOR: AP
+    // AUTHOR(S): AP
     // create.html POST REQUEST
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel) {
         productRepository.createProduct(productModel);
-        //redirect is used to switch pages
+        // redirect is used to switch pages
         return "/admin/index";
+    }
+
+    // AUTHOR(S): ECS
+    // editProduct.html POST REQUEST
+    // this is called when a form="action" method="POST" is called
+    // i.e when a button gets pressed and sends data further
+    @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
+    public String edit(@ModelAttribute ProductModel productModel) {
+        productRepository.updateProduct(productModel);
+        return "/admin/editList";
     }
 
     // AUTHOR(S): LKB, ECS, CPS

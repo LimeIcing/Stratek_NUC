@@ -7,6 +7,7 @@ import java.util.List;
 public interface ProductRepositoryInterface {
 
     void createProduct(ProductModel p);
+    void updateProduct(ProductModel p);
     String isProductSaved(int rowsAffected, String productName);
     ProductModel get(String ean);
     List<ProductModel> getAdminList();
