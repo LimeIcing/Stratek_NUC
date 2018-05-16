@@ -1,3 +1,4 @@
+-- AUTHOR(S): ECS
 CREATE VIEW product_list AS
 SELECT
 	CONCAT(manufacturer,' ' , name) AS name,
@@ -6,6 +7,7 @@ SELECT
 FROM products
 ORDER BY name;
 
+-- AUTHOR(S): ECS
 CREATE VIEW product_list_admin AS
 SELECT
 	ean,
