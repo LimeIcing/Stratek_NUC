@@ -44,6 +44,13 @@ public class ProductController {
         return "/admin/index";
     }
 
+    // AUTHOR(S): CPS
+    @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
+    public String edit(Model model, @PathVariable(value = "ean") String ean) {
+        model.addAttribute("product", productRepository.get(ean));
+        return "/admin/editProduct";
+    }
+
     // AUTHOR(S): ECS
     // editProduct.html POST REQUEST
     // this is called when a form="action" method="POST" is called
@@ -66,12 +73,5 @@ public class ProductController {
     public String adminProducts (Model model) {
         model.addAttribute("products", productRepository.getAdminList());
         return "/admin/editList";
-    }
-
-    // AUTHOR(S): CPS
-    @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String adminEdit (Model model, @PathVariable(value = "ean") String ean) {
-        model.addAttribute("product", productRepository.get(ean));
-        return "/admin/editProduct";
     }
 }
