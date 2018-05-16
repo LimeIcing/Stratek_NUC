@@ -40,7 +40,7 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("Rows affected: " + rowsAffected);
     }
 
-    // AUTHOR(S): AP, LKB
+    // AUTHOR(S): ECS
     @Override
     public void updateProduct(ProductModel p) {
 
