@@ -7,13 +7,34 @@
 <body>
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
-    <h1>Admin Page</h1>
+    <h1>Rediger Produkt</h1>
+    <form id="form" th:object="${product}">
+        <div class="grid-container">
+            <label>EAN</label>
+                <label th:text="${product.ean}"></label>
+                    <input type="text" th:field="*{ean}" />
+            <label>Kategori</label>
+                <label th:text="${product.category}"></label>
+            <select th:field="*{productModel.category}">
+                <option value="">--</option>
+                <option th:each="option : ${options}"
+                        th:value="${option.name}"
+                        th:text="${option.name}">
+                </option>
+            </select>
+            <label>Navn</label>
+                <label th:text="${product.name}"></label>
+                    <input type="text" th:field="*{name}" />
+            <label>Antal</label>
+                <label th:text="${product.quantity}"></label>
+                    <input type="text" th:field="*{quantity}" />
+            <label>Pris</label>
+                <label th:text="${'kr. ' + product.price}"></label>
+                    <input type="text" th:field="*{price}" />
+        </div>
+        <input type="submit" value="Gem"/>
 
-        <p th:text="${product.category}"></p>
-        <p th:text="${product.name}"></p>
-        <p th:text="${product.quantity}"></p>
-        <p th:text="${'kr. ' + product.price}"></p>
-        <p th:text="${product.ean}"></p>
+    </form>
 
 </div>
 

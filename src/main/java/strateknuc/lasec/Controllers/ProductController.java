@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import strateknuc.lasec.Interfaces.CategoryRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
+import strateknuc.lasec.Models.CategoryModel;
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.CategoryRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
@@ -70,8 +71,9 @@ public class ProductController {
 
     // AUTHOR(S): CPS
     @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String adminEdit (Model model, @PathVariable(value = "ean") String ean) {
+    public String adminEdit (Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
         model.addAttribute("product", productRepository.get(ean));
+        categoryModel.addAttribute("options", categoryRepository.get());
         return "/admin/editProduct";
     }
 }
