@@ -8,17 +8,18 @@
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
     <h1>Slet Produkt</h1>
+    <form th:object="${product}" th:action="@{/admin/delete}" method="POST">
+
 
     <p th:text="${product.ean}"></p>
-    <p th:test="${product.category}"></p>
+    <p th:text="${product.category}"></p>
     <p th:text="${product.name}"></p>
     <p th:text="${product.manufacturer}"></p>
     <p th:text="${product.price}"></p>
     <p th:text="${product.quantity}"></p>
-
-    <form th:object="${product}" th:action="@{/admin/delete}" method="POST">
         <input type="submit" value="Slet"/>
     </form>
+
 </div>
 
 
