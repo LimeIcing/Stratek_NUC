@@ -53,9 +53,16 @@ public class ProductController {
     }
 
     // AUTHOR(S): ECS
-    @RequestMapping(value = "/admin/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/editList", method = RequestMethod.GET)
     public String adminProducts (Model model) {
         model.addAttribute("products", productRepository.getAdminList());
-        return "/admin/edit";
+        return "/admin/editList";
+    }
+
+    // AUTHOR(S): CPS
+    @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
+    public String adminEdit (Model model, @PathVariable(value = "ean") String ean) {
+        model.addAttribute("product", productRepository.get(ean));
+        return "/admin/editProduct";
     }
 }

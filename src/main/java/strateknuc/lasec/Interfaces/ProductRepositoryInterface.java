@@ -11,4 +11,5 @@ public interface ProductRepositoryInterface {
     ProductModel get(String ean);
     List<ProductModel> getAdminList();
     List<ProductModel> getList(String category);
+
 }

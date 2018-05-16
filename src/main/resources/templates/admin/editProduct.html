@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:include="/fragments/adminStyle :: sidenav"></div>
+<div id="content">
+    <h1>Admin Page</h1>
+
+        <p th:text="${product.category}"></p>
+        <p th:text="${product.name}"></p>
+        <p th:text="${product.quantity}"></p>
+        <p th:text="${'kr. ' + product.price}"></p>
+        <p th:text="${product.ean}"></p>
+
+</div>
+
+
+</body>
+<style th:include="/fragments/adminStyle :: adminStyle">
+
+</style>
+</html>
