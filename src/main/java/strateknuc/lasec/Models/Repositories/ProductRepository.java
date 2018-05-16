@@ -44,7 +44,6 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public void updateProduct(ProductModel p) {
 
-        // Update with SQL tables - sync if anything changes (task)
         String sql = "UPDATE products " +
                 "SET manufacturer = " + p.getManufacturer() +
                 "name = " + p.getName() +
@@ -52,6 +51,14 @@ public class ProductRepository implements ProductRepositoryInterface {
                 "price = " + p.getPrice() +
                 "category = " + p.getCategory() +
                 "description =" + p.getDescription();
+
+        jdbc.update(sql);
+    }
+
+    public void deleteProduct(String ean) {
+
+        String sql = "DELETE FROM products " +
+                "WHERE ean = " + ean;
 
         jdbc.update(sql);
     }

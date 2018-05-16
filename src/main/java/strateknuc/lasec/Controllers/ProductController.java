@@ -63,6 +63,16 @@ public class ProductController {
         return "/admin/editList";
     }
 
+    // AUTHOR(S): ECS
+    // editProduct.html POST REQUEST
+    // this is called when a form="action" method="POST" is called
+    // i.e when a button gets pressed and sends data further
+    @RequestMapping(value = "/admin/editList", method = RequestMethod.POST)
+    public String delete(String ean) {
+        productRepository.deleteProduct(ean);
+        return "/admin/editList";
+    }
+
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
     public String productIndex (Model model, @PathVariable(value = "category") String category) {
