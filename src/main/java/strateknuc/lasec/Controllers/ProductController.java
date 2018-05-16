@@ -23,6 +23,7 @@ public class ProductController {
     private ProductRepositoryInterface productRepository = new ProductRepository();
     @Autowired
     private CategoryRepositoryInterface categoryRepository = new CategoryRepository();
+    private ProductModel toBeDeleted;
 
     // AUTHOR(S): AP, ECS
     // create.html GET REQUEST
@@ -63,11 +64,12 @@ public class ProductController {
         return "redirect:/admin/editList";
     }
 
-    // AUTHOR(S): CPS
+    // AUTHOR(S): CPS, ECS
     //Mapping for Delete page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.GET)
     public String delete(Model model, @PathVariable(value = "ean") String ean) {
-        model.addAttribute("product", productRepository.get(ean));
+        toBeDeleted = productRepository.get(ean);
+        model.addAttribute("product", toBeDeleted);
         return "/admin/delete";
     }
 
@@ -76,8 +78,9 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
-    public String delete(@ModelAttribute ProductModel productModel) {
-        productRepository.deleteProduct(productModel);
+    public String delete() {
+        productRepository.deleteProduct(toBeDeleted);
+        toBeDeleted = null;
         return "redirect:/admin/editList";
     }
 
