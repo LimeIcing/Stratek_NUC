@@ -45,11 +45,11 @@ public class ProductRepository implements ProductRepositoryInterface {
     public void updateProduct(ProductModel p) {
 
         String sql = "UPDATE products " +
-                "SET manufacturer = " + p.getManufacturer() +
-                "name = " + p.getName() +
-                "quantity = " + p.getQuantity() +
-                "price = " + p.getPrice() +
-                "category = " + p.getCategory() +
+                "SET manufacturer = " + p.getManufacturer() + ", " +
+                "name = " + p.getName() + ", " +
+                "quantity = " + p.getQuantity() + ", " +
+                "price = " + p.getPrice() + ", " +
+                "category = " + p.getCategory() + ", " +
                 "description =" + p.getDescription();
 
         jdbc.update(sql);
