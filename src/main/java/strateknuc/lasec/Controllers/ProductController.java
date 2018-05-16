@@ -42,7 +42,7 @@ public class ProductController {
     public String create(@ModelAttribute ProductModel productModel) {
         productRepository.createProduct(productModel);
         // redirect is used to switch pages
-        return "/admin/index";
+        return "redirect:/admin/index";
     }
 
     // AUTHOR(S): CPS
@@ -60,17 +60,17 @@ public class ProductController {
     @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
     public String edit(@ModelAttribute ProductModel productModel) {
         productRepository.updateProduct(productModel);
-        return "/admin/editList";
+        return "redirect:/admin/editList";
     }
 
     // AUTHOR(S): ECS
     // editProduct.html POST REQUEST
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
-    @RequestMapping(value = "/admin/editList", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
     public String delete(String ean) {
         productRepository.deleteProduct(ean);
-        return "/admin/editList";
+        return "redirect:/admin/editList";
     }
 
     // AUTHOR(S): LKB, ECS, CPS
