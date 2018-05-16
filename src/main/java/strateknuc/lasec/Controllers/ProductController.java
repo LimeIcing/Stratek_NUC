@@ -47,8 +47,9 @@ public class ProductController {
 
     // AUTHOR(S): CPS
     @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String edit(Model model, @PathVariable(value = "ean") String ean) {
+    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
         model.addAttribute("product", productRepository.get(ean));
+        categoryModel.addAttribute("options", categoryRepository.get());
         return "/admin/editProduct";
     }
 
@@ -74,13 +75,5 @@ public class ProductController {
     public String adminProducts (Model model) {
         model.addAttribute("products", productRepository.getAdminList());
         return "/admin/editList";
-    }
-
-    // AUTHOR(S): CPS
-    @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String adminEdit (Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
-        model.addAttribute("product", productRepository.get(ean));
-        categoryModel.addAttribute("options", categoryRepository.get());
-        return "/admin/editProduct";
     }
 }
