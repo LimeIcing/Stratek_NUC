@@ -8,7 +8,7 @@ public interface ProductRepositoryInterface {
 
     void createProduct(ProductModel p);
     void updateProduct(ProductModel p);
-    void deleteProduct(String ean);
+    void deleteProduct(ProductModel p);
     String isProductSaved(int rowsAffected, String productName);
     ProductModel get(String ean);
     List<ProductModel> getAdminList();

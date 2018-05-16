@@ -77,7 +77,7 @@ public class ProductController {
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/delete", method = RequestMethod.POST)
     public String delete(@ModelAttribute ProductModel productModel) {
-        productRepository.deleteProduct(productModel.getEan());
+        productRepository.deleteProduct(productModel);
         return "redirect:/admin/editList";
     }
 
