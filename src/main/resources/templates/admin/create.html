@@ -20,7 +20,7 @@
         <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
         <p>Product Quantity:</p> <input type="number" th:field="${productModel.quantity}" required/><br/>
         <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}"/> <br/>
-        <p>Product Price:</p>  <input type="number" th:field="${productModel.price}" required/> <br/>
+        <p>Product Price:</p>  <input type="number" th:field="${productModel.price}" required max="99999.99" step=".01"/> <br/>
         <input type="submit" value="Save"/>
     </form>
 </div>
