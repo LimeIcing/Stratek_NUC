@@ -12,9 +12,18 @@ public class OrderRepository implements OrderRepositoryInterface {
 
     private JdbcTemplate jdbc;
 
+    // AUTHOR(S): ECS
     @Override
-    public void addOrderToDatabase(String customer_name, String customer_email, List<ProductModel> productList)
-    {
+    public void addOrderToDatabase(String customer_name, String customer_email, List<ProductModel> productList) {
+
+        // Gets the newly created order's ID back from the db
+        String getOrderFromDb = "SELECT id FROM orders " +
+                "WHERE customer_email = '" + customer_email + "' " +
+                "AND customer_name = '" + customer_name + "' " +
+                "ORDER BY id DESC LIMIT 1";
+
+        jdbc.update(getOrderFromDb);
+
         /*
         to add an order to DB
         ---ORDER---
