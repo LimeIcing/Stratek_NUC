@@ -8,8 +8,10 @@
     <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
         <table id="products">
-            <tr th:each="product : ${products}">
-                <td th:text="${product.name}"></td>
+            <tr th:each="product : ${products}" >
+                <td>
+                    <a th:href="${'/product/product/'} + ${product.ean}" th:text="${product.name}" ></a>
+                </td>
                 <td style="width: 105px" th:text="${'kr. ' + product.price}"></td>
                 <td style="width: 100px"><button class="button" style="vertical-align:middle"><span>Køb </span></button></td>
             </tr>
