@@ -26,9 +26,10 @@ public class ProductModel {
 
     // AUTHOR(S): ECS
     // Constructor used to get a list of products
-    public ProductModel(String name, double price) {
+    public ProductModel(String name, double price, String ean) {
         this.name = name;
         this.price = price;
+        this.ean = ean;
     }
 
     // Getters & Setters

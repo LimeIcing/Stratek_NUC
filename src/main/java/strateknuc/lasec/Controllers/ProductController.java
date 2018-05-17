@@ -98,6 +98,7 @@ public class ProductController {
     // AUTHOR(S): ECS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.GET)
     public String productDetails(Model model, @PathVariable(value = "ean") String ean) {
+        System.out.println(ean);
         model.addAttribute("product", productRepository.get(ean));
         return "/product/details";
     }

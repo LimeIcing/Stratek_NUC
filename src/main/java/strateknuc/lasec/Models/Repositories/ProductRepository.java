@@ -115,7 +115,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {
-            products.add(new ProductModel(rs.getString(1), rs.getDouble(2)));
+            products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(3)));
         }
 
         return products;
