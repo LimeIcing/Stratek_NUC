@@ -6,8 +6,8 @@ USE stratek;
 -- AUTHOR(S): ECS
 CREATE TABLE orders(
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_email VARCHAR(50) NOT NULL,
-    customer_name VARCHAR(100) NOT NULL,
+    customerEmail VARCHAR(50) NOT NULL,
+    customerName VARCHAR(100) NOT NULL,
     date DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

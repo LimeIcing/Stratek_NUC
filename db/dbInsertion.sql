@@ -1,5 +1,5 @@
 -- AUTHOR(S): ECS   
-INSERT INTO orders(customer_email, customer_name)
+INSERT INTO orders(customerEmail, customerName)
 VALUES
 	('phelbsfan54@outlook.dk', 'John Smith'),
     ('lkof67@yahoo.com', 'Lise Kofoed'),
