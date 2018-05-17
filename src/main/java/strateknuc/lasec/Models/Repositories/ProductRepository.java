@@ -25,6 +25,10 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public void createProduct(ProductModel p) {
 
+        while (p.getEan().length() < 13) {
+            p.setEan("0" + p.getEan());
+        }
+
         // Update with SQL tables - sync if anything changes (task)
         String sql = "INSERT INTO products( ean, manufacturer, name, quantity, price, category, description) " +
                 "VALUES('" + p.getEan() + "', '"
