@@ -103,7 +103,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         return product;
     }
 
-    // AUTHOR(S): LKB, ECS
+    // AUTHOR(S): LKB, ECS, CPS
     // Returns a list of products from the db
     @Override
     public List<ProductModel> getList(String category) {
@@ -115,7 +115,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {
-            products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(3)));
+            products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(4)));
         }
 
         return products;
