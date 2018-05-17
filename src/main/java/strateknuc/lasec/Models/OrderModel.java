@@ -4,34 +4,39 @@ import java.util.ArrayList;
 
 // AP,SS, LKB
 public class OrderModel {
-   private String customer_name;
-   private String customer_email;
+   private String customerName;
+   private String customerEmail;
 
    private double totalprice;
 
-   ArrayList<ProductModel> productlist = new ArrayList<>();
+   private ArrayList<ProductModel> productlist = new ArrayList<>();
 
    public OrderModel(){}
 
-    public OrderModel(String customer_name, String customer_email) {
-        this.customer_name = customer_name;
-        this.customer_email = customer_email;
+    public OrderModel(String customerName, String customerEmail) {
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
     }
 
-    public String getCustomer_name() {
-        return customer_name;
+    public void clearOrder()
+    {
+        productlist.clear();
     }
 
-    public void setCustomer_name(String customer_name) {
-        this.customer_name = customer_name;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public String getCustomer_email() {
-        return customer_email;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void setCustomer_email(String customer_email) {
-        this.customer_email = customer_email;
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
     public  void addProduct(ProductModel productModel){
         productlist.add(productModel);
