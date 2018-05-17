@@ -43,8 +43,6 @@ public class OrderModel {
     }
 
     public void setTotalPrice(){
-        if (productlist== null)
-            return;
         for (ProductModel products:productlist) {
             totalprice+=products.getPrice();
         }

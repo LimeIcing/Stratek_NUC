@@ -3,19 +3,25 @@ package strateknuc.lasec.Controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
+import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
+import strateknuc.lasec.Models.Repositories.ProductRepository;
 
 @Controller
 public class OrderController {
 
+    @Autowired
+    private ProductRepositoryInterface productRepository = new ProductRepository();
+
     //Author: SS, AP, LKB
     @Autowired
-    private OrderRepositoryInterface repo = new OrderRepository();
+    private OrderRepositoryInterface orderRepository = new OrderRepository();
 
     //Author: SS, AP, LKB
     private OrderModel shoppingCart = new OrderModel();
@@ -24,11 +30,12 @@ public class OrderController {
     //------KØB USE CASE------
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
-    @RequestMapping(value = "/product/category", method = RequestMethod.POST)
-    public String addToOrderModel(@ModelAttribute ProductModel productModel)
+    @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
+    public String addToOrderModel(@PathVariable(value = "ean") String ean)
     {
-        shoppingCart.addProduct(productModel);
+        shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
+
         return "/product/category";
     }
 
@@ -41,10 +48,11 @@ public class OrderController {
     @RequestMapping(value = "/shoppingCart", method = RequestMethod.POST)
     public String checkout(@ModelAttribute OrderModel orderModel)
     {
-        repo.addOrderToDatabase(orderModel.getCustomerName(),
+        orderRepository.addOrderToDatabase(orderModel.getCustomerName(),
                 orderModel.getCustomerEmail(), shoppingCart.getProductlist());
 
-        return "/shoppingCart";
+        shoppingCart.clearOrder();
+        return "/index";
 
     }
 

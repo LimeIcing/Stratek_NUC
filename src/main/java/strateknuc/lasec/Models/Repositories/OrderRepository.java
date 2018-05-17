@@ -16,27 +16,27 @@ public class OrderRepository implements OrderRepositoryInterface {
     @Override
     public void addOrderToDatabase(String customerName, String customerEmail, List<ProductModel> productList) {
 
+        String insertOrderIntoDb = "INSERT INTO orders(customer_name, customer_email) " +
+                "VALUE('" + customerName + "', '" + customerEmail + "')";
+
+        jdbc.update(insertOrderIntoDb);
+
         // Gets the newly created order's ID back from the db
-        String getOrderFromDb = "SELECT id FROM orders " +
+        String getOrderIdFromDb = "SELECT id FROM orders " +
                 "WHERE customer_email = '" + customerEmail + "' " +
                 "AND customer_name = '" + customerName + "' " +
                 "ORDER BY id DESC LIMIT 1";
 
-        jdbc.update(getOrderFromDb);
+        int orderId = jdbc.update(getOrderIdFromDb);
 
-        /*
-        to add an order to DB
-        ---ORDER---
-        int id, String customerName, String customerEmail, date
+        String insertIntoProductOrder = "";
 
-        INSERT INTO orders VALUES(customerName, customerEmail)
+        for (ProductModel product : productList) {
+            insertIntoProductOrder = "INSERT INTO products_orders(order_id, product_ean, quantity) " +
+                    "VALUE("+ orderId + ", '" + product.getEan() + "', " + product.getQuantity() + ")";
+            jdbc.update(insertIntoProductOrder);
+        }
 
-
-        ---PRODUCT_ORDERS---
-
-        SELECT ID FROM ORDERS WHERE CUSTOMER
-
-         */
 
     }
 }
