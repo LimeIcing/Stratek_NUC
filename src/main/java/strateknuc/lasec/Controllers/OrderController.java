@@ -13,11 +13,14 @@ import strateknuc.lasec.Models.Repositories.OrderRepository;
 @Controller
 public class OrderController {
 
+    //Author: SS, AP, LKB
     @Autowired
     private OrderRepositoryInterface repo = new OrderRepository();
 
+    //Author: SS, AP, LKB
     private OrderModel shoppingCart = new OrderModel();
 
+    //Author: SS, AP, LKB
     //------KØB USE CASE------
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
@@ -29,6 +32,7 @@ public class OrderController {
         return "/product/category";
     }
 
+    //Author: SS, AP, LKB
     //TODO: look at return statement, change html if neccessary
     //------CHECKOUT USE CASE-----
     //pre : shopping cart must have elements inside
