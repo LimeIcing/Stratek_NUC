@@ -21,10 +21,11 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     private String returnSuccesfully;
 
-    // AUTHOR(S): AP, LKB
+    // AUTHOR(S): AP, LKB, ECS
     @Override
     public void createProduct(ProductModel p) {
 
+        // Auto-corrects short EAN numbers
         while (p.getEan().length() < 13) {
             p.setEan("0" + p.getEan());
         }
