@@ -58,10 +58,10 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): ECS
     @Override
-    public void deleteProduct(ProductModel p) {
+    public void deleteProduct(String ean) {
 
         String sql = "DELETE FROM products " +
-                "WHERE ean = '" + p.getEan() + "'";
+                "WHERE ean = '" + ean + "'";
 
         jdbc.update(sql);
     }
