@@ -1,24 +1,16 @@
--- AUTHOR(S): ECS
-INSERT INTO customers
+-- AUTHOR(S): ECS   
+INSERT INTO orders(customer_email, customer_name)
 VALUES
-	('bogholderi@delfinen.dk', 'Else', 'Thomsen'),
-    ('lkof67@yahoo.com', 'Lise', 'Kofoed'),
-    ('phelbsfan54@outlook.dk', 'John', 'Smith'),
-    ('fuckseaworld@gmail.com', 'Bob', 'Williams');
-
--- AUTHOR(S): ECS    
-INSERT INTO orders(customer_email)
-VALUES
-	('phelbsfan54@outlook.dk'),
-    ('lkof67@yahoo.com'),
-    ('phelbsfan54@outlook.dk'),
-    ('phelbsfan54@outlook.dk'),
-    ('fuckseaworld@gmail.com'),
-    ('fuckseaworld@gmail.com'),
-    ('bogholderi@delfinen.dk'),
-    ('bogholderi@delfinen.dk'),
-    ('bogholderi@delfinen.dk'),
-    ('fuckseaworld@gmail.com');
+	('phelbsfan54@outlook.dk', 'John Smith'),
+    ('lkof67@yahoo.com', 'Lise Kofoed'),
+    ('phelbsfan54@outlook.dk', 'John Smith'),
+    ('phelbsfan54@outlook.dk', 'John Smith'),
+    ('fuckseaworld@gmail.com', 'Bob Williams'),
+    ('fuckseaworld@gmail.com', 'Bob Williams'),
+    ('bogholderi@delfinen.dk', 'Else Thomsen'),
+    ('bogholderi@delfinen.dk', 'Else Thomsen'),
+    ('bogholderi@delfinen.dk', 'Else Thomsen'),
+    ('fuckseaworld@gmail.com', 'Bob Williams');
 
 -- AUTHOR(S): ECS
 INSERT INTO categories
