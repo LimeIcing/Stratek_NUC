@@ -8,7 +8,7 @@
 <div id="content">
     <h1>Opret Produkt</h1>
     <form id="form" th:action="@{/admin/create}" method="POST">
-        <p>Product EAN:</p> <input type="number" th:field="${productModel.ean}" required/><br/>
+        <p>Product EAN:</p> <input type="number" th:field="${productModel.ean}" required max="9999999999999"/><br/>
         <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
         <p>Product Category:</p> <select th:field="*{productModel.category}">
         <option value="">--</option>
@@ -19,7 +19,7 @@
     </select> <br/>
         <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required/> <br/>
         <p>Product Quantity:</p> <input type="number" th:field="${productModel.quantity}" required/><br/>
-        <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}" required/> <br/>
+        <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}"/> <br/>
         <p>Product Price:</p>  <input type="number" th:field="${productModel.price}" required/> <br/>
         <input type="submit" value="Save"/>
     </form>

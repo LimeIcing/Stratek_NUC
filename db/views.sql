@@ -3,7 +3,8 @@ CREATE VIEW product_list AS
 SELECT
 	CONCAT(manufacturer,' ' , name) AS name,
     price,
-    category
+    category,
+    ean
 FROM products
 ORDER BY name;
 
