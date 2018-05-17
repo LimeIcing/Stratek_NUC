@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Product Details</title>
 </head>
-<body>
 
+<body>
+<h1>Product Details</h1>
+<div id="container">
+    <div th:include="fragments/pageStyle :: nav_top"></div>
+    <div id="content">
+        <div class="grid-container">
+            <a href="product/category/Mus">Mus</a>
+            <a href="product/category/NUC">NUC</a>
+            <a href="product/category/RAM">RAM</a>
+            <a href="product/category/Skærm">Skærm</a>
+            <a href="product/category/SSD">SSD</a>
+            <a href="product/category/Tastatur">Tastatur</a>
+        </div>
+    </div>
+
+</div>
 </body>
+<style th:include="fragments/pageStyle :: style"></style>
 </html>
