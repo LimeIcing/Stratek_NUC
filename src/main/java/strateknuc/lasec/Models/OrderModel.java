@@ -11,6 +11,8 @@ public class OrderModel {
 
    ArrayList<ProductModel> productlist = new ArrayList<>();
 
+   public OrderModel(){}
+
     public OrderModel(String customer_name, String customer_email) {
         this.customer_name = customer_name;
         this.customer_email = customer_email;
