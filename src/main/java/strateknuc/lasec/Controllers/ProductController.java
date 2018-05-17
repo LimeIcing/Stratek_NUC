@@ -94,4 +94,11 @@ public class ProductController {
         model.addAttribute("products", productRepository.getAdminList());
         return "/admin/editList";
     }
+
+    // AUTHOR(S): ECS
+    @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.GET)
+    public String productDetails(Model model, @PathVariable(value = "ean") String ean) {
+        model.addAttribute("product", productRepository.get(ean));
+        return "/product/details";
+    }
 }
