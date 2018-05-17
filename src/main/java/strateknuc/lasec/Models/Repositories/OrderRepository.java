@@ -13,8 +13,21 @@ public class OrderRepository implements OrderRepositoryInterface {
     private JdbcTemplate jdbc;
 
     @Override
-    public void addOrderToDatabase(String customer_name, String customer_email, List<ProductModel> productList) {
+    public void addOrderToDatabase(String customer_name, String customer_email, List<ProductModel> productList)
+    {
+        /*
+        to add an order to DB
+        ---ORDER---
+        int id, String customerName, String customerEmail, date
 
+        INSERT INTO orders VALUES(customerName, customerEmail)
+
+
+        ---PRODUCT_ORDERS---
+
+        SELECT ID FROM ORDERS WHERE CUSTOMER
+
+         */
 
     }
 }
