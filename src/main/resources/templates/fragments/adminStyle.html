@@ -117,7 +117,7 @@
         background-color: #b82b00;
         color: #f3f3f3;
     }
-    #products tr td button#edit, button#delete   {
+    #products tr td a#edit,a#delete  {
         color: #f3f3f3;
         border: none;
         border-radius: 3px;
@@ -127,10 +127,15 @@
         display: block;
 
     }
-    #products tr td button#edit{
+    #products tr td a#edit svg, a#delete svg {
+        display: block;
+        margin: auto;
+
+    }
+    #products tr td a#edit{
         background-color: #008CBA;
     }
-    #products tr td button#delete   {
+    #products tr td a#delete   {
         background-color: #b82b00;
     }
     .grid-container {

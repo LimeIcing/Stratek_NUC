@@ -56,7 +56,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         jdbc.update(sql);
     }
 
-    // AUTHOR(S): ECS
+    // AUTHOR(S): ECS, CPS
     @Override
     public void deleteProduct(String ean) {
 

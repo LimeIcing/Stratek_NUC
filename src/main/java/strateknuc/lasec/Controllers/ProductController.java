@@ -71,7 +71,7 @@ public class ProductController {
         return "/admin/delete";
     }
 
-    // AUTHOR(S): ECS
+    // AUTHOR(S): ECS, CPS
     // editProduct.html POST REQUEST
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
