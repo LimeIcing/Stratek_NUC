@@ -2,6 +2,7 @@ package strateknuc.lasec.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,24 +10,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
-import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
+//Author: SS, AP, LKB, ECS, CPS
 @Controller
 public class OrderController {
 
     @Autowired
     private ProductRepositoryInterface productRepository = new ProductRepository();
 
-    //Author: SS, AP, LKB
     @Autowired
     private OrderRepositoryInterface orderRepository = new OrderRepository();
 
-    //Author: SS, AP, LKB
     private OrderModel shoppingCart = new OrderModel();
 
-    //Author: SS, AP, LKB
     //------KØB USE CASE------
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
@@ -39,7 +37,17 @@ public class OrderController {
         return "/product/category";
     }
 
-    //Author: SS, AP, LKB
+    //hver gang man går ind på indkøbskurv siden
+    //så bliver denne metode kaldt
+    @RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
+    public String showCart(Model model)
+    {
+        model.addAttribute("productList",shoppingCart.getProductlist());
+        model.addAttribute("totalPrice", shoppingCart.getTotalprice());
+
+        return "/shoppingCart";
+    }
+
     //TODO: look at return statement, change html if neccessary
     //------CHECKOUT USE CASE-----
     //pre : shopping cart must have elements inside
