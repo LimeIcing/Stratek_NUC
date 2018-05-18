@@ -9,12 +9,33 @@
     <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
         <table id="products">
+            <tr>
+                <th>EAN</th>
+                <th>Kategori</th>
+                <th>Navn</th>
+                <th>Stykpris</th>
+                <th>Antal</th>
+                <th>Pris</th>
+            </tr>
             <tr th:each="product : ${productList}" >
+                <td th:text="${product.ean}"></td>
+                <td th:text="${product.category}"></td>
                 <td>
-                    <a th:href="${'/product/details/' + product.ean}" th:text="${product.name}" ></a>
+                    <a th:href="${'/product/details/' + product.ean}" th:text="${product.manufacturer} + ' ' + ${product.name}" ></a>
                 </td>
-                <td style="width: 105px" th:text="${'kr. ' + product.price}"></td>
+                <div th:with="result=${product.price / product.quantity}">
+                    <td th:text="'kr. ' + ${result}"></td>
+                </div>
                 <td th:text="${product.quantity}"></td>
+                <td th:text="${'kr. ' + product.price}"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             <tr  th:object="${totalPrice}">
                 <td style="text-align: right">Total</td>

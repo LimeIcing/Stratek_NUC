@@ -10,17 +10,17 @@
     <div id="content">
         <table id="products">
             <tr>
-                <th>Navn</th>
-                <th>Kategori</th>
                 <th>EAN</th>
+                <th>Kategori</th>
+                <th>Navn</th>
                 <th>Stykpris</th>
                 <th>Antal</th>
                 <th>Pris</th>
             </tr>
             <tr th:each="product : ${productList}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.category}"></td>
                 <td th:text="${product.ean}"></td>
+                <td th:text="${product.category}"></td>
+                <td th:text="${product.manufacturer} + ' ' + ${product.name}"></td>
                 <div th:with="result=${product.price / product.quantity}">
                     <td th:text="'kr. ' + ${result}"></td>
                 </div>
