@@ -7,13 +7,25 @@
 <body>
 <div id="container">
     <div th:include="fragments/pageStyle :: nav_top"></div>
-    <h1>Product Details</h1>
-    <div class="grid-details" style="width: 75%">
-        <div class="grid-itemdetails item1">IMG</div>
-        <div class="grid-itemdetails item2">P_Text</div>
-        <div class="grid-itemdetails item3">P_Descrip_Text</div>
+    <h1 th:text="${product.manufacturer} + ' ' + ${product.name}"></h1>
+        <div class="row">
+            <div class="column" style="background-color:#aaa; width: 30%"></div>
+            <div class="column" style="background-color: #bbb; width: 70%"></div>
+            <div class="column" style="background-color:#ccc; width: 100%" >
+                <h4>Detaljer</h4>
+                <p>Beskrivelse: <label th:text="${product.description}"></label></p>
+    
+                <p>EAN: <label th:text="${product.ean}"></label></p>
 
-    </div>
+                <p>Fabrikant: <label th:text="${product.manufacturer}"></label></p>
+
+                <p>Navn: <label th:text="${product.name}"></label></p>
+
+                <p>Kategori: <label th:text="${product.category}"></label></p>
+
+            </div>
+        </div>
+
     </div>
 </div>
 </body>
