@@ -25,7 +25,23 @@
                     <td th:text="'kr. ' + ${result}"></td>
                 </div>
                 <td th:text="${product.quantity}"></td>
+                <td th:text="${product.price}"></td>
+            </tr>
+            <tr style="margin-top: 10px">
+                <th >Total</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
                 <td th:object="${totalPrice}" th:text="'kr. ' + ${totalPrice}"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
         <form id="form" th:action="@{/checkout}" method="POST" th:object="${order}">
