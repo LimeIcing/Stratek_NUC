@@ -30,12 +30,12 @@ public class OrderController {
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
     @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel(@PathVariable(value = "ean") String ean)
-    {
+    public String addToOrderModel(@PathVariable(value = "ean") String ean) {
+
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
 
-        return "redirect:/shoppingCart";
+        return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
 
     //hver gang man går ind på indkøbskurv siden
