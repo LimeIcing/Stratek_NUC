@@ -1,6 +1,8 @@
 package strateknuc.lasec.Models.Repositories;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
@@ -10,6 +12,7 @@ import java.util.List;
 @Repository
 public class OrderRepository implements OrderRepositoryInterface {
 
+    @Autowired
     private JdbcTemplate jdbc;
 
     // AUTHOR(S): ECS
@@ -28,12 +31,15 @@ public class OrderRepository implements OrderRepositoryInterface {
                 "AND customer_name = '" + customerName + "' " +
                 "ORDER BY id DESC LIMIT 1";
 
-        int orderId = jdbc.update(getOrderIdFromDb);
+
+        SqlRowSet rs = jdbc.queryForRowSet(getOrderIdFromDb);
+        rs.next();
+        int orderId = rs.getInt(1);
 
         String insertIntoProductOrder = "";
 
         for (ProductModel product : productList) {
-            insertIntoProductOrder = "INSERT INTO products_orders(order_id, product_ean, quantity) " +
+            insertIntoProductOrder = "INSERT INTO product_orders(order_id, product_ean, quantity) " +
                     "VALUE("+ orderId + ", '" + product.getEan() + "', " + product.getQuantity() + ")";
             jdbc.update(insertIntoProductOrder);
         }
