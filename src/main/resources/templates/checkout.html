@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Stratek</title>
+</head>
+
+<body>
+<div id="container">
+    <div th:include="fragments/pageStyle :: nav_top"></div>
+    <div id="content">
+        <table id="products">
+            <tr>
+                <th>Navn</th>
+                <th>Kategori</th>
+                <th>EAN</th>
+                <th>Antal</th>
+                <th>Pris</th>
+            </tr>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.category}"></td>
+                <td th:text="${product.ean}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td th:object="${totalPrice}" th:text="'kr. ' + ${totalPrice}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+<style th:include="fragments/pageStyle :: style"></style>
+</html>

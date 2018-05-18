@@ -16,8 +16,9 @@
                 <td style="width: 105px" th:text="${'kr. ' + product.price}"></td>
             </tr>
             <tr  th:object="${totalPrice}">
-                <td>Total</td>
+                <td style="text-align: right">Total</td>
                 <td th:text="'kr. ' + ${totalPrice}"></td>
+                <td><a href="/checkout">Checkout</a></td>
             </tr>
         </table>
     </div>

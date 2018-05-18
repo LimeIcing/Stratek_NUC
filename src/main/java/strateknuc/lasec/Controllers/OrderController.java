@@ -48,6 +48,16 @@ public class OrderController {
 
         return "/shoppingCart";
     }
+    //hver gang man går ind på indkøbskurv siden
+    //så bliver denne metode kaldt
+    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
+    public String showCheckOut(Model model)
+    {
+        model.addAttribute("productList",shoppingCart.getProductlist());
+        model.addAttribute("totalPrice", shoppingCart.getTotalprice());
+
+        return "/checkout";
+    }
 
     //TODO: look at return statement, change html if neccessary
     //------CHECKOUT USE CASE-----
