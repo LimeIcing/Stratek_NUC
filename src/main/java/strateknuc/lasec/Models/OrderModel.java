@@ -43,9 +43,11 @@ public class OrderModel {
     }
 
     public void setTotalPrice(){
-        for (ProductModel products:productlist) {
-            totalprice+=products.getPrice();
-        }
+       this.totalprice = 0;
+       
+       for (ProductModel products:productlist) {
+           this.totalprice += products.getPrice();
+       }
     }
 
     public double getTotalprice() {
