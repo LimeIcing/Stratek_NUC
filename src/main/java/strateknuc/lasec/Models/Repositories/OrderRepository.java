@@ -15,6 +15,7 @@ public class OrderRepository implements OrderRepositoryInterface {
     // AUTHOR(S): ECS
     @Override
     public void addOrderToDatabase(String customerName, String customerEmail, List<ProductModel> productList) {
+        System.out.println(customerName + "-" + customerEmail);
 
         String insertOrderIntoDb = "INSERT INTO orders(customer_name, customer_email) " +
                 "VALUE('" + customerName + "', '" + customerEmail + "')";

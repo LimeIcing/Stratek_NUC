@@ -68,4 +68,9 @@ public class OrderModel {
     public ArrayList<ProductModel> getProductlist() {
         return productlist;
     }
+
+    public void setProductlist(ArrayList<ProductModel> productlist) {
+        this.productlist = productlist;
+    }
 }
+

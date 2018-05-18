@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
+import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
@@ -32,7 +33,6 @@ public class OrderController {
     public String addToOrderModel(@PathVariable(value = "ean") String ean)
     {
         shoppingCart.addProduct(productRepository.get(ean));
-        System.out.println(ean);
         shoppingCart.setTotalPrice();
 
         return "redirect:/shoppingCart";
@@ -54,8 +54,8 @@ public class OrderController {
     public String showCheckOut(Model model)
     {
         model.addAttribute("productList",shoppingCart.getProductlist());
-        model.addAttribute("totalPrice", shoppingCart.getTotalPrice());
-
+        model.addAttribute("totalPrice",shoppingCart.getTotalPrice());
+        model.addAttribute("order",shoppingCart);
         return "/checkout";
     }
 
@@ -64,11 +64,17 @@ public class OrderController {
     //pre : shopping cart must have elements inside
     //post: one or more elements inside shopping cart
     //når man trykker på checkout knappen inde i shoppingcart
-    @RequestMapping(value = "/shoppingCart", method = RequestMethod.POST)
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String checkout(@ModelAttribute OrderModel orderModel)
     {
+        for (ProductModel p : shoppingCart.getProductlist()
+             ) {
+            System.out.println(p.getEan());
+
+        }
         orderRepository.addOrderToDatabase(orderModel.getCustomerName(),
                 orderModel.getCustomerEmail(), shoppingCart.getProductlist());
+
 
         shoppingCart.clearOrder();
         return "/index";

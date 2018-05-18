@@ -28,6 +28,11 @@
                 <td th:object="${totalPrice}" th:text="'kr. ' + ${totalPrice}"></td>
             </tr>
         </table>
+        <form id="form" th:action="@{/checkout}" method="POST" th:object="${order}">
+            <p>Indtast Navn:</p> <input type="text" th:field="${order.customerName}" required /><br/>
+            <p>Indtast Email:</p> <input type="text" th:field="${order.customerEmail}" required/><br/>
+            <input type="submit" value="Bekræft Køb"/>
+        </form>
     </div>
 
 </div>
