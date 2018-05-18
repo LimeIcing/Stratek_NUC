@@ -54,7 +54,7 @@ public class OrderController {
     public String showCheckOut(Model model)
     {
         model.addAttribute("productList",shoppingCart.getProductlist());
-        model.addAttribute("totalPrice", shoppingCart.getTotalprice());
+        model.addAttribute("totalPrice", shoppingCart.getTotalPrice());
 
         return "/checkout";
     }
