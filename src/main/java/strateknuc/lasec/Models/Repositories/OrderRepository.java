@@ -6,7 +6,9 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
+import strateknuc.lasec.Models.ProductOrderModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -43,7 +45,26 @@ public class OrderRepository implements OrderRepositoryInterface {
                     "VALUE("+ orderId + ", '" + product.getEan() + "', " + product.getQuantity() + ")";
             jdbc.update(insertIntoProductOrder);
         }
+    }
 
+    // LKB
+    // Retrieves a list of orders from the database
+    @Override
+    public List<ProductOrderModel> getOrdersFromDatabase() {
 
+        List<ProductOrderModel> orders = new ArrayList<>();
+
+        String sql = "SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean " +
+                "FROM orders " +
+                "FULL JOIN product_orders ON id=product_orders.order_id " +
+                "ORDER BY id";
+
+        SqlRowSet rs = jdbc.queryForRowSet(sql);
+
+        while (rs.next()) {
+            orders.add(new ProductOrderModel(rs.getInt(1), rs.getDate(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5)));
+        }
+        return orders;
     }
 }

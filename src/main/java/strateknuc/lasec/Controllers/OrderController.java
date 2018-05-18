@@ -81,6 +81,13 @@ public class OrderController {
 
     }
 
+    @RequestMapping(value = "/admin/showOrders", method = RequestMethod.GET)
+    public String showOrders(Model model) {
+
+        model.addAttribute("orders", orderRepository.getOrdersFromDatabase());
+        return "/admin/showOrders";
+    }
+
 
 
 }

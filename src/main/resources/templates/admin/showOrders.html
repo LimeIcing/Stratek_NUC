@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ordre</title>
+</head>
+<body>
+<div id="container">
+    <div th:include="/fragments/adminStyle :: sidenav"></div>
+    <div id="content">
+        <h1>Ordre</h1>
+
+        <table>
+            <tr>
+                <th>Ordre ID</th>
+                <th>Dato</th>
+                <th>Kunde Navn</th>
+                <th>Email</th>
+                <th>Produkt EAN</th>
+            </tr>
+            <tr th:each="order : ${orders}" >
+                <td th:text="${order.orderId}"></td>
+                <td th:text="${order.date}"></td>
+                <td th:text="${order.customerName}"></td>
+                <td th:text="${order.customerEmail}"></td>
+                <td th:text="${order.ean}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+<style th:include="/fragments/adminStyle :: adminStyle"></style>
+</html>
