@@ -7,7 +7,7 @@ public class OrderModel {
    private String customerName;
    private String customerEmail;
 
-   private double totalprice;
+   private double totalPrice;
 
    private ArrayList<ProductModel> productlist = new ArrayList<>();
 
@@ -44,16 +44,16 @@ public class OrderModel {
         this.customerEmail = customerEmail;
     }
 
-    public double getTotalprice() {
-        return totalprice;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
     // AUTHOR(S): ECS
     public void setTotalPrice(){
-        this.totalprice = 0;
+        this.totalPrice = 0;
 
         for (ProductModel products:productlist) {
-            this.totalprice += products.getPrice();
+            this.totalPrice += products.getPrice();
         }
     }
 
