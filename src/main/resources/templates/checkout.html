@@ -13,6 +13,7 @@
                 <th>Navn</th>
                 <th>Kategori</th>
                 <th>EAN</th>
+                <th>Stykpris</th>
                 <th>Antal</th>
                 <th>Pris</th>
             </tr>
@@ -20,6 +21,9 @@
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.category}"></td>
                 <td th:text="${product.ean}"></td>
+                <div th:with="result=${product.price / product.quantity}">
+                    <td th:text="'kr. ' + ${result}"></td>
+                </div>
                 <td th:text="${product.quantity}"></td>
                 <td th:object="${totalPrice}" th:text="'kr. ' + ${totalPrice}"></td>
             </tr>
