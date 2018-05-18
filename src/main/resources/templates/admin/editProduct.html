@@ -11,8 +11,8 @@
     <form id="form" th:object="${product}" th:action="@{/admin/editProduct}" method="POST">
         <div class="grid-container">
             <label>EAN</label>
-                <label th:text="${product.ean}"></label>
-                    <input type="text" th:field="*{ean}" required disabled/>
+                <label th:text="${product.ean}" style="grid-column: span 2"></label>
+                    <input type="text" th:field="*{ean}" required style="display: none"/>
             <label>Kategori</label>
                 <label th:text="${product.category}"></label>
                     <select th:field="*{category}">
