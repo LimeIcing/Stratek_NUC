@@ -2,7 +2,7 @@ package strateknuc.lasec.Models;
 
 import java.util.ArrayList;
 
-// AP,SS, LKB
+// AP, SS, LKB, ECS
 public class OrderModel {
    private String customerName;
    private String customerEmail;
@@ -16,6 +16,11 @@ public class OrderModel {
     public OrderModel(String customerName, String customerEmail) {
         this.customerName = customerName;
         this.customerEmail = customerEmail;
+    }
+
+    // AUTHOR(S):
+    public void addProduct(ProductModel productModel) {
+        productlist.add(productModel);
     }
 
     public void clearOrder()
@@ -38,20 +43,18 @@ public class OrderModel {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
-    public  void addProduct(ProductModel productModel){
-        productlist.add(productModel);
-    }
-
-    public void setTotalPrice(){
-       this.totalprice = 0;
-       
-       for (ProductModel products:productlist) {
-           this.totalprice += products.getPrice();
-       }
-    }
 
     public double getTotalprice() {
         return totalprice;
+    }
+
+    // AUTHOR(S): ECS
+    public void setTotalPrice(){
+        this.totalprice = 0;
+
+        for (ProductModel products:productlist) {
+            this.totalprice += products.getPrice();
+        }
     }
 
     public ArrayList<ProductModel> getProductlist() {

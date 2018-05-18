@@ -35,7 +35,7 @@ public class OrderController {
         System.out.println(ean);
         shoppingCart.setTotalPrice();
 
-        return "/shoppingCart";
+        return "redirect:/shoppingCart";
     }
 
     //hver gang man går ind på indkøbskurv siden
