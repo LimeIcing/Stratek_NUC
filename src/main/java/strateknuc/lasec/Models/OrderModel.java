@@ -19,8 +19,16 @@ public class OrderModel {
     }
 
     // AUTHOR(S):
-    public void addProduct(ProductModel productModel) {
-        productlist.add(productModel);
+    public void addProduct(ProductModel newProduct) {
+        for (ProductModel product:productlist) {
+            if (newProduct.getEan().equals(product.getEan())) {
+                product.setQuantity(product.getQuantity() + 1);
+                product.setPrice(product.getPrice() + newProduct.getPrice());
+                return;
+            }
+        }
+        productlist.add(new ProductModel(newProduct.getEan(), newProduct.getName(), newProduct.getCategory(),
+                newProduct.getManufacturer(), 1, newProduct.getPrice(), newProduct.getDescription()));
     }
 
     public void clearOrder()

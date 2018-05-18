@@ -14,6 +14,7 @@
                     <a th:href="${'/product/details/' + product.ean}" th:text="${product.name}" ></a>
                 </td>
                 <td style="width: 105px" th:text="${'kr. ' + product.price}"></td>
+                <td th:text="${product.quantity}"></td>
             </tr>
             <tr  th:object="${totalPrice}">
                 <td>Total</td>
