@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Stratek</title>
+    <title>Indkøbskurv</title>
 </head>
 
 <body>
@@ -11,17 +11,21 @@
         <table id="products">
             <tr>
                 <th>EAN</th>
-                <th>Kategori</th>
                 <th>Navn</th>
+                <th>Kategori</th>
                 <th>Stykpris</th>
                 <th>Antal</th>
                 <th>Pris</th>
             </tr>
             <tr th:each="product : ${productList}" >
-                <td th:text="${product.ean}"></td>
-                <td th:text="${product.category}"></td>
+                <td>
+                    <a th:href="${'/product/details/' + product.ean}" th:text="${product.ean}"></a>
+                </td>
                 <td>
                     <a th:href="${'/product/details/' + product.ean}" th:text="${product.manufacturer} + ' ' + ${product.name}" ></a>
+                </td>
+                <td>
+                    <a th:href="${'/product/category/' + product.category}" th:text="${product.category}"></a>
                 </td>
                 <div th:with="result=${product.price / product.quantity}">
                     <td th:text="'kr. ' + ${result}"></td>

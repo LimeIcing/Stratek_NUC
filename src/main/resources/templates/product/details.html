@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Product Details</title>
+    <title th:text="${product.manufacturer} + ' ' + ${product.name}"></title>
 </head>
 
 <body>
 <div id="container">
     <div th:include="fragments/pageStyle :: nav_top"></div>
-    <h1 th:text="${product.manufacturer} + ' ' + ${product.name}"></h1>
-        <div class="row">
-            <div class="column" style="background-color:#aaa; width: 30%"></div>
-            <div class="column" style="background-color: #bbb; width: 70%"></div>
-            <div class="column" style="background-color:#ccc; width: 100%" >
+        <div class="row" style="width: 100%">
+            <div class="column" style="background-color:#aaa; width: 30%">
+                <p>Billede her</p>
+            </div>
+            <div class="column" style="background-color: #bbb; width: 60%">
+                <h1 th:text="${product.manufacturer} + ' ' + ${product.name}"></h1>
+                <p th:text="${product.description}"></p>
+            </div>
+            <div class="column" style="background-color:#ccc; width: 60%" >
                 <h4>Detaljer</h4>
-                <p>Beskrivelse: <label th:text="${product.description}"></label></p>
-    
+
                 <p>EAN: <label th:text="${product.ean}"></label></p>
 
                 <p>Fabrikant: <label th:text="${product.manufacturer}"></label></p>
@@ -23,6 +26,9 @@
 
                 <p>Kategori: <label th:text="${product.category}"></label></p>
 
+            </div>
+            <div class="column" style="background-color: #ddd; width: 30%">
+                <p>---Lav lagerstatus og "køb"-knap her---</p>
             </div>
         </div>
 
