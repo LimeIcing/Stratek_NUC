@@ -32,9 +32,10 @@ public class OrderController {
     public String addToOrderModel(@PathVariable(value = "ean") String ean)
     {
         shoppingCart.addProduct(productRepository.get(ean));
+        System.out.println(ean);
         shoppingCart.setTotalPrice();
 
-        return "/product/category";
+        return "/shoppingCart";
     }
 
     //hver gang man går ind på indkøbskurv siden
