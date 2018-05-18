@@ -81,6 +81,9 @@ public class OrderController {
 
     }
 
+    // AUTHOR: LKB
+    // Mapping for when you click on "Se Ordre" on the admin site
+    // Retrieves a list of orders and creates a model of them
     @RequestMapping(value = "/admin/showOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
 

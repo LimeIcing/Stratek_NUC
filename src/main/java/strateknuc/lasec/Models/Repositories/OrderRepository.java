@@ -47,7 +47,7 @@ public class OrderRepository implements OrderRepositoryInterface {
         }
     }
 
-    // LKB
+    // AUTHOR: LKB
     // Retrieves a list of orders from the database
     @Override
     public List<ProductOrderModel> getOrdersFromDatabase() {

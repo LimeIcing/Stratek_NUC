@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// AUTHOR: LKB
 public class ProductOrderModel {
 
     private int orderId;
@@ -13,6 +14,7 @@ public class ProductOrderModel {
     private String ean;
     private int quantity;
 
+    // Formats a date to "yyyy-MM-dd HH:mm:ss" example: "2018-05-18 13:57:25"
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public ProductOrderModel() {
