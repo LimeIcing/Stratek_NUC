@@ -11,6 +11,7 @@ public class ProductOrderModel {
     private String customerName;
     private String customerEmail;
     private String ean;
+    private int quantity;
 
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -18,12 +19,13 @@ public class ProductOrderModel {
 
     }
 
-    public ProductOrderModel(int orderId, Date date, String customerName, String customerEmail, String ean) {
+    public ProductOrderModel(int orderId, Date date, String customerName, String customerEmail, String ean, int quantity) {
         this.orderId = orderId;
         this.date = dateFormat.format(date);
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.ean = ean;
+        this.quantity = quantity;
     }
 
     public int getOrderId() {
@@ -64,5 +66,13 @@ public class ProductOrderModel {
 
     public void setEan(String ean) {
         this.ean = ean;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

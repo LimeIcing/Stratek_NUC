@@ -9,13 +9,14 @@
     <div id="content">
         <h1>Ordre</h1>
 
-        <table>
+        <table id="products">
             <tr>
                 <th>Ordre ID</th>
                 <th>Dato</th>
                 <th>Kunde Navn</th>
                 <th>Email</th>
                 <th>Produkt EAN</th>
+                <th>Antal</th>
             </tr>
             <tr th:each="order : ${orders}" >
                 <td th:text="${order.orderId}"></td>
@@ -23,6 +24,7 @@
                 <td th:text="${order.customerName}"></td>
                 <td th:text="${order.customerEmail}"></td>
                 <td th:text="${order.ean}"></td>
+                <td th:text="${order.quantity}"></td>
             </tr>
         </table>
     </div>

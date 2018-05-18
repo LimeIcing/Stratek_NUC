@@ -54,7 +54,8 @@ public class OrderRepository implements OrderRepositoryInterface {
 
         List<ProductOrderModel> orders = new ArrayList<>();
 
-        String sql = "SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean " +
+        String sql = "SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean, " +
+                "product_orders.quantity " +
                 "FROM orders " +
                 "FULL JOIN product_orders ON id=product_orders.order_id " +
                 "ORDER BY id";
@@ -63,7 +64,7 @@ public class OrderRepository implements OrderRepositoryInterface {
 
         while (rs.next()) {
             orders.add(new ProductOrderModel(rs.getInt(1), rs.getDate(2), rs.getString(3),
-                    rs.getString(4), rs.getString(5)));
+                    rs.getString(4), rs.getString(5), rs.getInt(6)));
         }
         return orders;
     }
