@@ -21,7 +21,8 @@
                 </td>
             </tr>
             <tr  th:object="${totalPrice}">
-                <td th:text="${totalPrice}"></td>
+                <td>Total</td>
+                <td th:text="'kr. ' + ${totalPrice}"></td>
             </tr>
         </table>
     </div>
