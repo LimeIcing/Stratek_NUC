@@ -31,9 +31,9 @@ public class OrderModel {
                 newProduct.getManufacturer(), 1, newProduct.getPrice(), newProduct.getDescription()));
     }
 
-    public void clearOrder()
-    {
+    public void clearOrder() {
         productlist.clear();
+        setTotalPrice();
     }
 
     public String getCustomerName() {

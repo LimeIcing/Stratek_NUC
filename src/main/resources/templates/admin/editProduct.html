@@ -12,7 +12,7 @@
         <div class="grid-container">
             <label>EAN</label>
                 <label th:text="${product.ean}"></label>
-                    <input type="text" th:field="*{ean}" required/>
+                    <input type="text" th:field="*{ean}" required disabled/>
             <label>Kategori</label>
                 <label th:text="${product.category}"></label>
                     <select th:field="*{category}">
