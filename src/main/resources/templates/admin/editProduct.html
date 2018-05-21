@@ -23,19 +23,19 @@
                     </select>
             <label>Producent</label>
                 <label th:text="${product.manufacturer}" ></label>
-                    <input type="text" th:field="*{manufacturer}" required/>
+                    <input type="text" th:field="*{manufacturer}" required maxlength="20"/>
             <label>Navn</label>
                 <label th:text="${product.name}"></label>
-                    <input type="text" th:field="*{name}" required />
+                    <input type="text" th:field="*{name}" required maxlength="50"/>
             <label>Antal</label>
                 <label th:text="${product.quantity}"></label>
                     <input type="text" th:field="*{quantity}" required/>
             <label>Pris</label>
                 <label th:text="${'kr. ' + product.price}"></label>
-                    <input type="text" th:field="*{price}" required />
+                    <input type="text" th:field="*{price}" required max="99999.99" step=".01"/>
             <label>Beskrivelse</label>
                 <label th:text="${product.description}"></label>
-                    <textarea style="width: 100%; max-width: 400px" type="text" th:field="*{description}" required/>
+                    <textarea style="width: 100%; max-width: 400px" type="text" th:field="*{description}"/>
         </div>
         <input type="submit" value="Gem"/>
 
