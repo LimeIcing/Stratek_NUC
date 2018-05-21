@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-    //AUTHOR: AP
-    //index.html GET REQUEST
-    //this is called when index is refreshed
+    // AUTHOR(S): AP
+    // index.html GET REQUEST
+    // this is called when index is refreshed
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "/index";
@@ -26,6 +26,8 @@ public class HomeController {
         return "/admin/index";
     }
 
+    // AUTHOR(S): ECS
+    // redirects to /admin/index when the "/index" part isn't present in the URL
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminIndexRedirect() {
         return "/admin/index";

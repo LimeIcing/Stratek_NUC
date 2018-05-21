@@ -94,9 +94,6 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         rs.next();
 
-        // public ProductModel(String ean, String name, String category, String manufacturer, int quantity, double price,
-        //                        String description)
-
         ProductModel product = new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
                 rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7));
 
