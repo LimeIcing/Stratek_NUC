@@ -35,7 +35,7 @@
                     <input type="text" th:field="*{price}" required min="0" max="99999.99" step=".01"/>
             <label>Beskrivelse</label>
                 <label th:text="${product.description}"></label>
-                    <textarea style="width: 100%; max-width: 400px" type="text" th:field="*{description}"/>
+                    <textarea style="width: 100%; max-width: 400px" type="text" th:field="*{description}" maxlength="16000"/>
         </div>
         <input type="submit" value="Gem"/>
 
