@@ -58,7 +58,7 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
-    public String edit(@ModelAttribute ProductModel productModel) {
+    public String edit(@ModelAttribute ProductModel productModel) throws Exception{
         productRepository.updateProduct(productModel);
         return "redirect:/admin/editList";
     }
