@@ -25,11 +25,13 @@ public class ConnectionCreator {
         /*
         return connection = DriverManager.
                 getConnection("jdbc:mysql://den1.mysql6.gear.host/stratekdb?user=stratekdb&password=stratekDB123!&useUnicode=true&characterEncoding=UTF-8");
-                */
+            */
 
         // connection to localhost
         return connection = DriverManager.
-                getConnection("jdbc:mysql://localhost/stratek?user=root&password=toor&useUnicode=true&characterEncoding=UTF-8");
+                getConnection("jdbc:mysql://localhost/stratek?user=root&password=1234&useUnicode=true&characterEncoding=UTF-8");
+
 
     }
+
 }
