@@ -5,9 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
+import strateknuc.lasec.ConnectionCreator;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,8 @@ public class ProductRepository implements ProductRepositoryInterface {
     // AUTHOR: AP, LKB
     @Autowired
     private JdbcTemplate jdbc;
+
+    ConnectionCreator connectionCreator = new ConnectionCreator();
 
     private String returnSuccesfully;
 
@@ -45,20 +50,31 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("Rows affected: " + rowsAffected);
     }
 
-    // AUTHOR(S): ECS
+    // AUTHOR(S): ECS, AP
     @Override
-    public void updateProduct(ProductModel p) {
+    public void updateProduct(ProductModel p) throws Exception {
 
-        String sql = "UPDATE products " +
-                "SET manufacturer = " + "'" + p.getManufacturer() + "', " +
-                "name = " + "'" + p.getName() + "', " +
-                "quantity = " + p.getQuantity() + ", " +
-                "price = " + p.getPrice() + ", " +
-                "category = " + "'" + p.getCategory() + "', " +
-                "description =" + "'" + p.getDescription() + "'" +
-                "WHERE ean = '" + p.getEan() + "'";
+        System.out.println("creating statement");
+        String updateString = "UPDATE products SET manufacturer = ?, name = ?, quantity = ?, "
+                + "price = ?, category = ?, description = ? WHERE ean = ?";
 
-        jdbc.update(sql);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(updateString);
+
+        System.out.println("updating statement");
+        preparedStatement.setString(1,p.getManufacturer());
+        preparedStatement.setString(2,p.getName());
+        preparedStatement.setInt(3,p.getQuantity());
+        preparedStatement.setDouble(4,p.getPrice());
+        preparedStatement.setString(5,p.getCategory());
+        preparedStatement.setString(6,p.getDescription());
+        preparedStatement.setString(7,p.getEan());
+
+        System.out.println("executing");
+        preparedStatement.executeUpdate();
+        System.out.println("closing connection");
+        preparedStatement.close();
     }
 
     // AUTHOR(S): ECS, CPS
