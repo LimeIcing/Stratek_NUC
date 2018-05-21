@@ -25,4 +25,9 @@ public class HomeController {
     {
         return "/admin/index";
     }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminIndexRedirect() {
+        return "/admin/index";
+    }
 }
