@@ -37,6 +37,15 @@ public class OrderController {
 
         return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
+    // CPS
+    @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
+    public String addToOrderModel2(@PathVariable(value = "ean") String ean) {
+
+        shoppingCart.addProduct(productRepository.get(ean));
+        shoppingCart.setTotalPrice();
+
+        return "redirect:/product/details/" + productRepository.get(ean).getEan();
+    }
 
     //hver gang man går ind på indkøbskurv siden
     //så bliver denne metode kaldt

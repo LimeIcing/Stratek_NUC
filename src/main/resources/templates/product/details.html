@@ -11,7 +11,7 @@
             <div class="column" style="background-color:#aaa; width: 30%">
                 <p>Billede her</p>
             </div>
-            <div class="column" style="background-color: #bbb; width: 60%">
+            <div class="column" style="background-color: #bbb; width: 70%">
                 <h1 th:text="${product.manufacturer} + ' ' + ${product.name}"></h1>
                 <p th:text="${product.description}"></p>
             </div>
@@ -27,8 +27,13 @@
                 <p>Kategori: <label th:text="${product.category}"></label></p>
 
             </div>
-            <div class="column" style="background-color: #ddd; width: 30%">
-                <p>---Lav lagerstatus og "køb"-knap her---</p>
+            <div class="column" style="background-color: #ddd; width: 40%">
+                <p style="margin-left: 33%">Lagerstatus: <label th:text="${product.quantity}"></label></p>
+                <hr style="width: 50%;margin-left: 25%">
+                <form th:object="${product}" style="width: 50%;margin-left: 25%" th:action="@{/product/details/} + ${product.ean}" method="POST">
+                    <input type="submit" value="Køb" title="Køb">
+                </form>
+
             </div>
         </div>
 
