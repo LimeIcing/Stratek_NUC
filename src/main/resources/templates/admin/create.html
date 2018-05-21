@@ -10,7 +10,7 @@
     <form id="form" th:action="@{/admin/create}" method="POST">
         <p>Product EAN:</p> <input type="number" th:field="${productModel.ean}" required max="9999999999999"/><br/>
         <p>Product Name:</p> <input type="text" th:field="${productModel.name}" required/><br/>
-        <p>Product Category:</p> <select th:field="*{productModel.category}">
+        <p>Product Category:</p> <select th:field="*{productModel.category}" required>
         <option value="">--</option>
         <option th:each="option : ${options}"
                 th:value="${option.name}"
