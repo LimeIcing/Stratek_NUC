@@ -24,8 +24,8 @@
             <td th:text="${product.quantity}"></td>
             <td th:text="${'kr. ' + product.price}"></td>
             <td th:text="${product.ean}"></td>
-            <td><a id="edit" th:href="${'/admin/editProduct/' + product.ean}"><i  class="fas fa-pencil-alt fa-2x"></i></a></td>
-            <td><a id="delete" th:href="${'/admin/delete/' + product.ean}"><i  class="fas fa-trash-alt fa-2x"></i></a></td>
+            <td><a id="edit" th:href="${'/admin/editProduct/' + product.ean}" title="Rediger"><i  class="fas fa-pencil-alt fa-2x"></i></a></td>
+            <td><a id="delete" th:href="${'/admin/delete/' + product.ean}" title="Slet"><i  class="fas fa-trash-alt fa-2x"></i></a></td>
         </tr>
 
     </table>

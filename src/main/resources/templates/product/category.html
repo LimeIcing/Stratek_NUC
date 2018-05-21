@@ -15,7 +15,7 @@
                 <td style="width: 105px" th:text="${'kr. ' + product.price}"></td>
                 <td style="width: 100px">
                     <form th:object="${product}" th:action="@{/product/category/} + ${product.ean}" method="POST">
-                    <input type="submit" value="Køb">
+                    <input type="submit" value="Køb" title="Køb">
                     </form>
                 </td>
             </tr>

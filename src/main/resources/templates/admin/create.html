@@ -19,9 +19,9 @@
     </select> <br/>
         <p>Product Manufacturer:</p> <input type="text" th:field="${productModel.manufacturer}" required maxlength="20"/> <br/>
         <p>Product Quantity:</p> <input type="number" th:field="${productModel.quantity}" required max="2147483647"/><br/>
-        <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}" maxlength="16000"/> <br/>
+        <p>Product Description:</p>  <textarea type="text" th:field="${productModel.description}" maxlength="16000" style="width: 400px; height: 150px"/> <br/>
         <p>Product Price:</p>  <input type="number" th:field="${productModel.price}" required min="0" max="99999.99" step=".01"/> <br/>
-        <input type="submit" value="Save"/>
+        <input type="submit" value="Gem" title="Gem"/>
     </form>
 </div>
 </body>
