@@ -47,7 +47,7 @@ public class ProductController {
 
     // AUTHOR(S): CPS
     @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
+    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) throws Exception {
         model.addAttribute("product", productRepository.get(ean));
         categoryModel.addAttribute("options", categoryRepository.get());
         return "/admin/editProduct";
@@ -66,7 +66,7 @@ public class ProductController {
     // AUTHOR(S): CPS, ECS
     //Mapping for Delete page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.GET)
-    public String delete(Model model, @PathVariable(value = "ean") String ean) {
+    public String delete(Model model, @PathVariable(value = "ean") String ean) throws Exception {
         model.addAttribute("product", productRepository.get(ean));
         return "/admin/delete";
     }
@@ -97,7 +97,7 @@ public class ProductController {
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.GET)
-    public String productDetails(Model model, @PathVariable(value = "ean") String ean) {
+    public String productDetails(Model model, @PathVariable(value = "ean") String ean) throws Exception {
         System.out.println(ean);
         model.addAttribute("product", productRepository.get(ean));
         return "/product/details";
