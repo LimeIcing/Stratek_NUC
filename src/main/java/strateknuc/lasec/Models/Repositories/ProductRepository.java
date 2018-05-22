@@ -22,9 +22,7 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Autowired
     private JdbcTemplate jdbc;
 
-    ConnectionCreator connectionCreator = new ConnectionCreator();
-
-    private String returnSuccesfully;
+    private ConnectionCreator connectionCreator = new ConnectionCreator();
 
     // AUTHOR(S): AP, LKB, ECS
     @Override
@@ -84,14 +82,24 @@ public class ProductRepository implements ProductRepositoryInterface {
         preparedStatement.close();
     }
 
-    // AUTHOR(S): ECS, CPS
+    // AUTHOR(S): ECS, CPS, LKB
     @Override
-    public void deleteProduct(String ean) {
+    public void deleteProduct(String ean) throws Exception {
 
-        String sql = "DELETE FROM products " +
-                "WHERE ean = '" + ean + "'";
+        System.out.println("creating statement");
+        String deleteString = "DELETE FROM products WHERE ean = ?";
 
-        jdbc.update(sql);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(deleteString);
+
+        System.out.println("create statement");
+        preparedStatement.setString(1, ean);
+
+        System.out.println("executing");
+        preparedStatement.executeUpdate();
+        System.out.println("closing connection");
+        preparedStatement.close();
     }
 
 
