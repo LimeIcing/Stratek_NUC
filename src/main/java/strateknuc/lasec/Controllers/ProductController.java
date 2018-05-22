@@ -87,14 +87,14 @@ public class ProductController {
 
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
-    public String productIndex (Model model, @PathVariable(value = "category") String category) {
+    public String productIndex (Model model, @PathVariable(value = "category") String category) throws Exception {
         model.addAttribute("products", productRepository.getList(category));
         return "/product/category";
     }
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/admin/editList", method = RequestMethod.GET)
-    public String adminProducts (Model model) {
+    public String adminProducts (Model model) throws Exception {
         model.addAttribute("products", productRepository.getAdminList());
         return "/admin/editList";
     }

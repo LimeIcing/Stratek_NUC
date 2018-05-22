@@ -139,17 +139,32 @@ public class ProductRepository implements ProductRepositoryInterface {
     // AUTHOR(S): LKB, ECS, CPS
     // Returns a list of products from the db
     @Override
-    public List<ProductModel> getList(String category) {
+    public List<ProductModel> getList(String category) throws Exception {
 
         List<ProductModel> products = new ArrayList<>();
 
-        String sql = "SELECT * FROM product_list WHERE category = '" + category + "'";
+        System.out.println("select statement");
+        String getProductsString = "SELECT * FROM product_list WHERE category = ?";
 
-        SqlRowSet rs = jdbc.queryForRowSet(sql);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(getProductsString);
+
+
+        System.out.println("create statement");
+        preparedStatement.setString(1, category);
+        System.out.println("after setString");
+        ResultSet rs = preparedStatement.executeQuery();
+        System.out.println("After executeQuery");
 
         while (rs.next()) {
             products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(4)));
         }
+
+        System.out.println("closing resultset");
+        rs.close();
+        System.out.println("closing connection");
+        preparedStatement.close();
 
         return products;
     }
@@ -157,18 +172,33 @@ public class ProductRepository implements ProductRepositoryInterface {
     // AUTHOR(S): LKB, ECS
     // Returns a list of products from the db
     @Override
-    public List<ProductModel> getAdminList() {
+    public List<ProductModel> getAdminList() throws Exception {
 
         List<ProductModel> products = new ArrayList<>();
 
-        String sql = "SELECT * FROM product_list_admin";
+        System.out.println("select statement");
+        String getAdminProductsString = "SELECT * FROM product_list_admin";
 
-        SqlRowSet rs = jdbc.queryForRowSet(sql);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(getAdminProductsString);
+
+
+        // System.out.println("create statement");
+        // preparedStatement.setString(1, category);
+        System.out.println("after setString");
+        ResultSet rs = preparedStatement.executeQuery();
+        System.out.println("After executeQuery");
 
         while (rs.next()) {
             products.add(new ProductModel(rs.getString(1), rs.getString(2), rs.getString(5), "",
                     rs.getInt(3), rs.getDouble(4), ""));
         }
+
+        System.out.println("closing resultset");
+        rs.close();
+        System.out.println("closing connection");
+        preparedStatement.close();
 
         return products;
     }
