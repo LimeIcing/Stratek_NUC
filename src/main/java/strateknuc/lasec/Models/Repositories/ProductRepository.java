@@ -11,6 +11,7 @@ import strateknuc.lasec.Models.ProductModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public void updateProduct(ProductModel p) throws Exception {
 
-        System.out.println("creating statement");
+        System.out.println("update statement");
         String updateString = "UPDATE products SET manufacturer = ?, name = ?, quantity = ?, "
                 + "price = ?, category = ?, description = ? WHERE ean = ?";
 
@@ -86,7 +87,7 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public void deleteProduct(String ean) throws Exception {
 
-        System.out.println("creating statement");
+        System.out.println("delete statement");
         String deleteString = "DELETE FROM products WHERE ean = ?";
 
         System.out.println("getting connection");
@@ -105,16 +106,32 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     //AUTHOR: LKB
     @Override
-    public ProductModel get(String ean){
+    public ProductModel get(String ean) throws Exception{
 
-        String sql = "SELECT * FROM products WHERE ean = " + ean;
+        System.out.println("select statement");
+        String getProductString = "SELECT * FROM products WHERE ean = ?";
 
-        SqlRowSet rs = jdbc.queryForRowSet(sql);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(getProductString);
+
+
+        System.out.println("create statement");
+        preparedStatement.setString(1, ean);
+        System.out.println("after setString");
+        ResultSet rs = preparedStatement.executeQuery();
+        System.out.println("After executeQuery");
 
         rs.next();
 
         ProductModel product = new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
                 rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7));
+
+
+        System.out.println("closing resultset");
+        rs.close();
+        System.out.println("closing connection");
+        preparedStatement.close();
 
         return product;
     }

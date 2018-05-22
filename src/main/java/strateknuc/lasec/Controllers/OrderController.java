@@ -30,7 +30,7 @@ public class OrderController {
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
     @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel(@PathVariable(value = "ean") String ean) {
+    public String addToOrderModel(@PathVariable(value = "ean") String ean) throws Exception {
 
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
@@ -39,7 +39,7 @@ public class OrderController {
     }
     // CPS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel2(@PathVariable(value = "ean") String ean) {
+    public String addToOrderModel2(@PathVariable(value = "ean") String ean) throws Exception {
 
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
