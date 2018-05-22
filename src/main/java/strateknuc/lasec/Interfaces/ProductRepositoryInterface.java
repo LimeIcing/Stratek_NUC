@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProductRepositoryInterface {
 
-    void createProduct(ProductModel p);
+    void createProduct(ProductModel p) throws Exception;
     void updateProduct(ProductModel p) throws Exception;
     void deleteProduct(String ean);
     String isProductSaved(int rowsAffected, String productName);

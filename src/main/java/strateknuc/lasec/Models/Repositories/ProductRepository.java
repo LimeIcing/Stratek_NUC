@@ -28,26 +28,37 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): AP, LKB, ECS
     @Override
-    public void createProduct(ProductModel p) {
+    public void createProduct(ProductModel p) throws Exception {
 
         // Auto-corrects short EAN numbers
         while (p.getEan().length() < 13) {
             p.setEan("0" + p.getEan());
         }
 
-        // Update with SQL tables - sync if anything changes (task)
-        String sql = "INSERT INTO products( ean, manufacturer, name, quantity, price, category, description) " +
-                "VALUES('" + p.getEan() + "', '"
-                + p.getManufacturer() + "', '" +
-                p.getName() + "', " +
-                p.getQuantity() + ", " +
-                p.getPrice() + ", '" +
-                p.getCategory() + "', '" +
-                p.getDescription() + "')";
+        System.out.println("creating statement");
+        String createString = "INSERT INTO product( ea, manufacturer, name, quantity, price, category, description) " +
+                "VALUES(?, ?, ?, ?, ?, ?, ?";
 
-            int rowsAffected = jdbc.update(sql);
-            returnSuccesfully = isProductSaved(rowsAffected,p.getName());
-            System.out.println("Rows affected: " + rowsAffected);
+        System.out.println("getting connection");
+        PreparedStatement preparedStatement = connectionCreator.getConnection().
+                prepareStatement(createString);
+
+        System.out.println("create statement");
+        preparedStatement.setString(1,p.getEan());
+        preparedStatement.setString(2,p.getManufacturer());
+        preparedStatement.setString(3,p.getName());
+        preparedStatement.setInt(4,p.getQuantity());
+        preparedStatement.setDouble(5,p.getPrice());
+        preparedStatement.setString(6,p.getCategory());
+        preparedStatement.setString(7,p.getDescription());
+
+        System.out.println("executing");
+        preparedStatement.executeUpdate();
+        System.out.println("closing connection");
+        preparedStatement.close();
+
+            // returnSuccesfully = isProductSaved(rowsAffected,p.getName());
+            // System.out.println("Rows affected: " + rowsAffected);
     }
 
     // AUTHOR(S): ECS, AP
