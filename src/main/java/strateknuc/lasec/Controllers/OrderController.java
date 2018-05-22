@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
@@ -37,12 +38,14 @@ public class OrderController {
 
         return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
-    // CPS
+    // Post method for when you are on the product/details page and press Buy
+    //CPS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel2(@PathVariable(value = "ean") String ean) {
-
+    public String addToOrderModelDetails(@PathVariable(value = "ean") String ean, RedirectAttributes rda) {
+        rda.addFlashAttribute("message", "Lagt i kurv");
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
+
 
         return "redirect:/product/details/" + productRepository.get(ean).getEan();
     }
