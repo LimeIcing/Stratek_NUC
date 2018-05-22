@@ -11,6 +11,6 @@ public interface ProductRepositoryInterface {
     void deleteProduct(String ean) throws Exception;
     ProductModel get(String ean) throws Exception;
     List<ProductModel> getAdminList();
-    List<ProductModel> getList(String category);
+    List<ProductModel> getList(String category) throws Exception;
 
 }

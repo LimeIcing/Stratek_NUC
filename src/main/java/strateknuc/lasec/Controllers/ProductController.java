@@ -83,7 +83,7 @@ public class ProductController {
 
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
-    public String productIndex (Model model, @PathVariable(value = "category") String category) {
+    public String productIndex (Model model, @PathVariable(value = "category") String category) throws Exception {
         model.addAttribute("products", productRepository.getList(category));
         return "/product/category";
     }
