@@ -56,9 +56,6 @@ public class ProductRepository implements ProductRepositoryInterface {
         preparedStatement.executeUpdate();
         System.out.println("closing connection");
         preparedStatement.close();
-
-            // returnSuccesfully = isProductSaved(rowsAffected,p.getName());
-            // System.out.println("Rows affected: " + rowsAffected);
     }
 
     // AUTHOR(S): ECS, AP
@@ -98,18 +95,6 @@ public class ProductRepository implements ProductRepositoryInterface {
         jdbc.update(sql);
     }
 
-    // AUTHOR: AP,LKB
-    @Override
-    public String isProductSaved(int rowsAffected, String productName) {
-
-        if(rowsAffected != 1) {
-            return productName + "was not created, try again";
-        }
-        // integrate with SQLException
-        else{
-            return productName + " was created successfully ";
-        }
-    }
 
     //AUTHOR: LKB
     @Override

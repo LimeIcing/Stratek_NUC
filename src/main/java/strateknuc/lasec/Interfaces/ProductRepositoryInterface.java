@@ -9,7 +9,6 @@ public interface ProductRepositoryInterface {
     void createProduct(ProductModel p) throws Exception;
     void updateProduct(ProductModel p) throws Exception;
     void deleteProduct(String ean);
-    String isProductSaved(int rowsAffected, String productName);
     ProductModel get(String ean);
     List<ProductModel> getAdminList();
     List<ProductModel> getList(String category);
