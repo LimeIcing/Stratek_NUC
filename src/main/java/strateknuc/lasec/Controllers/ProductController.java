@@ -39,7 +39,7 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProductModel productModel) {
+    public String create(@ModelAttribute ProductModel productModel) throws Exception {
         productRepository.createProduct(productModel);
         // redirect is used to switch pages
         return "redirect:/admin/index";

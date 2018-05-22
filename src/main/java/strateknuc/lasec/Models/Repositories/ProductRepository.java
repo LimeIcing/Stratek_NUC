@@ -36,8 +36,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         }
 
         System.out.println("creating statement");
-        String createString = "INSERT INTO product( ea, manufacturer, name, quantity, price, category, description) " +
-                "VALUES(?, ?, ?, ?, ?, ?, ?";
+        String createString = "INSERT INTO products VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         System.out.println("getting connection");
         PreparedStatement preparedStatement = connectionCreator.getConnection().
