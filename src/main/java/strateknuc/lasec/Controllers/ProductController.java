@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import strateknuc.lasec.Interfaces.CategoryRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.CategoryModel;
@@ -39,7 +40,8 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProductModel productModel) throws Exception {
+    public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
+        rdt.addFlashAttribute("message", "Vare oprettet");
         productRepository.createProduct(productModel);
         // redirect is used to switch pages
         return "redirect:/admin/index";
@@ -58,7 +60,8 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
-    public String edit(@ModelAttribute ProductModel productModel) throws Exception{
+    public String edit(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception{
+        rdt.addFlashAttribute("message", "Vare redigeret");
         productRepository.updateProduct(productModel);
         return "redirect:/admin/editList";
     }
@@ -76,7 +79,8 @@ public class ProductController {
     // this is called when a form="action" method="POST" is called
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.POST)
-    public String delete(@PathVariable(value = "ean") String ean) throws Exception {
+    public String delete(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
+        rdt.addFlashAttribute("message", "Vare slettet");
         productRepository.deleteProduct(ean);
         return "redirect:/admin/editList";
     }

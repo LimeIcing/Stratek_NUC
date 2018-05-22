@@ -31,8 +31,8 @@ public class OrderController {
     //TODO: change url path to køb button's name
     //når man trykker på køb så bliver produktet tilføjet til kurven
     @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel(@PathVariable(value = "ean") String ean) throws Exception {
-
+    public String addToOrderModel(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
+        rdt.addFlashAttribute("message", "Lagt i Kurv");
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
 
@@ -41,7 +41,8 @@ public class OrderController {
     // Post method for when you are on the product/details page and press Buy
     //CPS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
-    public String addToOrderModel2(@PathVariable(value = "ean") String ean) throws Exception {
+    public String addToOrderModel2(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
+        rdt.addFlashAttribute("message", "Lagt i Kurv");
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
         return "redirect:/product/details/" + productRepository.get(ean).getEan();

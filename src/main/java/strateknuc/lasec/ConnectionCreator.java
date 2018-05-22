@@ -29,7 +29,7 @@ public class ConnectionCreator {
 
         // connection to localhost
         return connection = DriverManager.
-                getConnection("jdbc:mysql://localhost/stratek?user=root&password=&useUnicode=true&characterEncoding=UTF-8");
+                getConnection("jdbc:mysql://localhost/stratek?user=root&password=1234&useUnicode=true&characterEncoding=UTF-8");
 
 
     }

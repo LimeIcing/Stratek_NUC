@@ -8,6 +8,7 @@
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
     <h1>Redigér Produkt</h1>
+    <div id="hideMe" th:if="${message}" th:text="${message}"/>
     <table id="products">
         <tr>
             <th>Kategori</th>

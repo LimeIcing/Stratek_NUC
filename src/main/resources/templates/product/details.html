@@ -30,7 +30,7 @@
             <div class="column" style="background-color: #ddd; width: 40%">
                 <p style="margin-left: 33%">Lagerstatus: <label th:text="${product.quantity}"></label></p>
                 <hr style="width: 50%;margin-left: 25%">
-                <div th:if="${message}" th:text="${message}"/>
+                <div id="hideMe" th:if="${message}" th:text="${message}"/>
                 <form th:object="${product}" style="width: 50%;margin-left: 25%" th:action="@{/product/details/} + ${product.ean}" method="POST">
                     <input type="submit" value="Køb" title="Køb">
                 </form>
