@@ -2,6 +2,9 @@ package strateknuc.lasec.Models;
 
 import java.util.ArrayList;
 
+/**
+ * @author AP, SS, LKB, ECS
+ */
 // AUTHOR(S): AP, SS, LKB, ECS
 public class OrderModel {
 
@@ -20,8 +23,8 @@ public class OrderModel {
      * addProduct takes a ProductModel and adds it to the the productlist
      * If the product is already in the list the quantity is raised by 1
      * and the price is doubled
+     * @author ECS LKB
      * @param newProduct the product the customer wishes to add to the productlist
-     * AUTHOR(S): ECS, LKB
      */
     public void addProduct(ProductModel newProduct) {
         for (ProductModel product:productlist) {

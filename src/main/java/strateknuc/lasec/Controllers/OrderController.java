@@ -35,6 +35,12 @@ public class OrderController {
         return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
 
+    /**
+     *
+     * @param ean
+     * @param rdt
+     * @return Returns path for the details page that you're already on
+     */
     // AUTHOR(S): CPS
     // Post method for when you are on the product/details page and press Buy
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
