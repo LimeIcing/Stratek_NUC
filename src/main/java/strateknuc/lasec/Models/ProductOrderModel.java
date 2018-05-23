@@ -4,23 +4,21 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-// AUTHOR: LKB
+// AUTHOR(S): LKB
 public class ProductOrderModel {
 
-    private int orderId;
-    private String date;
-    private String customerName;
-    private String customerEmail;
-    private String ean;
-    private int quantity;
+    private int orderId, quantity;
+    private String ean, customerName, customerEmail, date;
 
     // Formats a date to "yyyy-MM-dd HH:mm:ss" example: "2018-05-18 13:57:25"
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    // Empty constructor
     public ProductOrderModel() {
 
     }
 
+    // Constructor
     public ProductOrderModel(int orderId, Date date, String customerName, String customerEmail, String ean, int quantity) {
         this.orderId = orderId;
         this.date = dateFormat.format(date);
@@ -30,6 +28,7 @@ public class ProductOrderModel {
         this.quantity = quantity;
     }
 
+    // Getters & Setters for Spring.
     public int getOrderId() {
         return orderId;
     }
