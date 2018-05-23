@@ -55,8 +55,10 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("executing...");
             preparedStatement.executeUpdate();
             msg = "Produkt oprettet. Navn: " + p.getName() + ", EAN nr.: " + p.getEan();
+            System.out.println(msg);
         } catch (SQLException e) {
             msg = "Produktet med EAN: " + p.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
+            System.out.println(msg);
         }
 
         try {
