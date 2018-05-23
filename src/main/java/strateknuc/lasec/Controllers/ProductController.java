@@ -1,6 +1,7 @@
 package strateknuc.lasec.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,8 @@ import strateknuc.lasec.Models.CategoryModel;
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.CategoryRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
+
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 public class ProductController {
@@ -41,8 +44,18 @@ public class ProductController {
     // i.e when a button gets pressed and sends data further
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
-        rdt.addFlashAttribute("message", "Vare oprettet");
-        productRepository.createProduct(productModel);
+        // rdt.addFlashAttribute("message", msg);
+
+        String msg = "";
+
+        try {
+            productRepository.createProduct(productModel);
+            msg = "Vare oprettet: " + productModel.getName() + ", " + productModel.getEan();
+        }
+        catch (SQLIntegrityConstraintViolationException e) {
+            msg = "Product already exists, please try again.";
+        }
+        rdt.addFlashAttribute("message", msg);
         // redirect is used to switch pages
         return "redirect:/admin/index";
     }

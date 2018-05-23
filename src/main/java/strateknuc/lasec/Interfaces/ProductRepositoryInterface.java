@@ -1,5 +1,6 @@
 package strateknuc.lasec.Interfaces;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import strateknuc.lasec.Models.ProductModel;
 
 import java.util.List;
