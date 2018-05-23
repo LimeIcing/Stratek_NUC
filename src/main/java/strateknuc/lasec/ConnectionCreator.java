@@ -34,10 +34,14 @@ public class ConnectionCreator {
         */
 
         // connection to localhost; pw=toor
+        /*
         return connection = DriverManager.
                 getConnection("jdbc:mysql://localhost/stratek?user=root&password=toor&useUnicode=true&characterEncoding=UTF-8");
+        */
 
-
+        // connection to localhost; pw=
+        return connection = DriverManager.
+                getConnection("jdbc:mysql://localhost/stratek?user=root&password=&useUnicode=true&characterEncoding=UTF-8");
     }
 
 }
