@@ -1,7 +1,6 @@
 package strateknuc.lasec.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import strateknuc.lasec.Interfaces.CategoryRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
-import strateknuc.lasec.Models.CategoryModel;
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.CategoryRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;

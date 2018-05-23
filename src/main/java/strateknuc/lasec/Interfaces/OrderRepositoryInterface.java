@@ -2,7 +2,6 @@ package strateknuc.lasec.Interfaces;
 
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.ProductOrderModel;
-
 import java.util.List;
 
 //Author: SS, AP, LKB

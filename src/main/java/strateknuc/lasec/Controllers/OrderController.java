@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
-import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
