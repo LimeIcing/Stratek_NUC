@@ -3,6 +3,10 @@ DROP DATABASE IF EXISTS stratek;
 CREATE DATABASE stratek;
 USE stratek;
 
+DROP USER IF EXISTS 'groot'@'localhost';
+CREATE USER 'groot'@'localhost' IDENTIFIED BY 'iamgroot';
+GRANT ALL ON * TO 'groot'@'localhost';
+
 -- AUTHOR(S): ECS
 CREATE TABLE orders(
 	id INT AUTO_INCREMENT PRIMARY KEY,
