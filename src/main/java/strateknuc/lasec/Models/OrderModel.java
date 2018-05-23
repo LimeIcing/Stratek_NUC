@@ -2,23 +2,27 @@ package strateknuc.lasec.Models;
 
 import java.util.ArrayList;
 
-// AP, SS, LKB, ECS
+// AUTHOR(S): AP, SS, LKB, ECS
 public class OrderModel {
-   private String customerName;
-   private String customerEmail;
 
+   private String customerName, customerEmail;
    private double totalPrice;
 
+   // Creates an empty ArrayList productlist
    private ArrayList<ProductModel> productlist = new ArrayList<>();
 
-   public OrderModel(){}
+   // Empty Constructor
+   public OrderModel(){
 
-    public OrderModel(String customerName, String customerEmail) {
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-    }
+   }
 
-    // AUTHOR(S):
+    /**
+     * addProduct takes a ProductModel and adds it to the the productlist
+     * If the product is already in the list the quantity is raised by 1
+     * and the price is doubled
+     * @param newProduct the product the customer wishes to add to the productlist
+     * AUTHOR(S): ECS, LKB
+     */
     public void addProduct(ProductModel newProduct) {
         for (ProductModel product:productlist) {
             if (newProduct.getEan().equals(product.getEan())) {
@@ -31,6 +35,9 @@ public class OrderModel {
                 newProduct.getManufacturer(), 1, newProduct.getPrice(), newProduct.getDescription()));
     }
 
+    /**
+     * clears the productlist and sets the total price to 0
+     */
     public void clearOrder() {
         productlist.clear();
         setTotalPrice();
