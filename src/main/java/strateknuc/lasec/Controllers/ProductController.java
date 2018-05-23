@@ -38,7 +38,7 @@ public class ProductController {
     // create.html POST REQUEST
     // This is called when you create a new product via the create page
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) {
+    public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
         String msg = productRepository.createProduct(productModel);
 
         rdt.addFlashAttribute("message", msg);
@@ -48,7 +48,7 @@ public class ProductController {
 
     // AUTHOR(S): CPS
     @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
+    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) throws Exception {
         model.addAttribute("product", productRepository.get(ean));
         categoryModel.addAttribute("options", categoryRepository.get());
 
@@ -59,7 +59,7 @@ public class ProductController {
     // editProduct.html POST REQUEST
     // This is called when a product is edited via the edit page
     @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
-    public String edit(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) {
+    public String edit(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
         rdt.addFlashAttribute("message", "Vare redigeret");
         productRepository.updateProduct(productModel);
 
@@ -69,7 +69,7 @@ public class ProductController {
     // AUTHOR(S): CPS, ECS
     // Mapping for Delete page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.GET)
-    public String delete(Model model, @PathVariable(value = "ean") String ean) {
+    public String delete(Model model, @PathVariable(value = "ean") String ean) throws Exception {
         model.addAttribute("product", productRepository.get(ean));
 
         return "/admin/delete";
@@ -79,7 +79,7 @@ public class ProductController {
     // editProduct.html POST REQUEST
     // This is called when you delete a product via the delete confirmation page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.POST)
-    public String delete(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) {
+    public String delete(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
         rdt.addFlashAttribute("message", "Vare slettet");
         productRepository.deleteProduct(ean);
 
@@ -88,7 +88,7 @@ public class ProductController {
 
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
-    public String productIndex (Model model, @PathVariable(value = "category") String category) {
+    public String productIndex (Model model, @PathVariable(value = "category") String category) throws Exception {
         model.addAttribute("products", productRepository.getList(category));
 
         return "/product/category";
@@ -96,7 +96,7 @@ public class ProductController {
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/admin/editList", method = RequestMethod.GET)
-    public String adminProducts (Model model) {
+    public String adminProducts (Model model) throws Exception {
         model.addAttribute("products", productRepository.getAdminList());
 
         return "/admin/editList";
@@ -104,7 +104,7 @@ public class ProductController {
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.GET)
-    public String productDetails(Model model, @PathVariable(value = "ean") String ean) {
+    public String productDetails(Model model, @PathVariable(value = "ean") String ean) throws Exception {
         model.addAttribute("product", productRepository.get(ean));
 
         return "/product/details";
