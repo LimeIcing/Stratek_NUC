@@ -21,8 +21,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-    public String adminIndex()
-    {
+    public String adminIndex() {
         return "/admin/index";
     }
 
