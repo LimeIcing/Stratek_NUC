@@ -32,11 +32,7 @@ public class ProductRepository implements ProductRepositoryInterface {
         try {
             System.out.println("getting connection...");
             preparedStatement = connectionCreator.getConnection().prepareStatement(createString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("creating product with EAN=" + p.getEan());
             preparedStatement.setString(1, p.getEan());
             preparedStatement.setString(2, p.getManufacturer());
@@ -46,7 +42,7 @@ public class ProductRepository implements ProductRepositoryInterface {
             preparedStatement.setString(6, p.getCategory());
             preparedStatement.setString(7, p.getDescription());
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         String msg;
@@ -55,17 +51,16 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("executing...");
             preparedStatement.executeUpdate();
             msg = "Produkt oprettet. Navn: " + p.getName() + ", EAN nr.: " + p.getEan();
-            System.out.println(msg);
         } catch (SQLException e) {
             msg = "Produktet med EAN: " + p.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
-            System.out.println(msg);
+            e.printStackTrace();
         }
 
         try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return msg;
@@ -81,13 +76,8 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().
-                    prepareStatement(updateString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+            preparedStatement = connectionCreator.getConnection().prepareStatement(updateString);
 
-        try {
             System.out.println("updating product with EAN=" + p.getEan());
             preparedStatement.setString(1, p.getManufacturer());
             preparedStatement.setString(2, p.getName());
@@ -96,22 +86,14 @@ public class ProductRepository implements ProductRepositoryInterface {
             preparedStatement.setString(5, p.getCategory());
             preparedStatement.setString(6, p.getDescription());
             preparedStatement.setString(7, p.getEan());
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("executing...");
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -125,29 +107,17 @@ public class ProductRepository implements ProductRepositoryInterface {
         try {
             System.out.println("getting connection...");
             preparedStatement = connectionCreator.getConnection().prepareStatement(deleteString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("deleting product with EAN=" + ean);
             preparedStatement.setString(1, ean);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("executing...");
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -163,33 +133,21 @@ public class ProductRepository implements ProductRepositoryInterface {
         try {
             System.out.println("getting connection...");
             preparedStatement = connectionCreator.getConnection().prepareStatement(getProductString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("selecting product with EAN=" + ean);
             preparedStatement.setString(1, ean);
             rs = preparedStatement.executeQuery();
             rs.next();
             product = new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
                     rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing resultset...");
             rs.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return product;
@@ -209,38 +167,22 @@ public class ProductRepository implements ProductRepositoryInterface {
         try {
             System.out.println("getting connection...");
             preparedStatement = connectionCreator.getConnection().prepareStatement(getProductsString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("selecting product(s) with category=" + category);
             preparedStatement.setString(1, category);
             rs = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             while (rs.next()) {
                 products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(4)));
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing resultset...");
             rs.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return products;
@@ -260,38 +202,22 @@ public class ProductRepository implements ProductRepositoryInterface {
         try {
             System.out.println("getting connection...");
             preparedStatement = connectionCreator.getConnection().prepareStatement(getAdminProductsString);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("selecting all products");
             rs = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             while (rs.next()) {
                 products.add(new ProductModel(rs.getString(1), rs.getString(2), rs.getString(5),
                         "", rs.getInt(3), rs.getDouble(4), ""));
             }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing resultset...");
             rs.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
 
-        try {
             System.out.println("closing connection...");
             preparedStatement.close();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return products;
