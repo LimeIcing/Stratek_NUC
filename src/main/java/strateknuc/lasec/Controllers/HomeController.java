@@ -9,20 +9,19 @@ public class HomeController {
 
     // AUTHOR(S): AP
     // index.html GET REQUEST
-    // this is called when index is refreshed
+    // This is called when index is refreshed
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "/index";
     }
 
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
-    public String adminIndex()
-    {
+    public String adminIndex() {
         return "/admin/index";
     }
 
     // AUTHOR(S): ECS
-    // redirects to /admin/index when the "/index" part isn't present in the URL
+    // Redirects to /admin/index when the "/index" part isn't present in the URL
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminIndexRedirect() {
         return "/admin/index";

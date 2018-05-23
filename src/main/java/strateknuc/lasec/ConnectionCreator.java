@@ -3,10 +3,13 @@ package strateknuc.lasec;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+//AUTHOR: AP
 public class ConnectionCreator {
 
     private Connection connection = null;
 
+    // This constructor makes sure the jdbc driver for preparedStatement is injected and if it isnt, it prints out an
+    // error message
     public ConnectionCreator()
     {
         try{
@@ -19,6 +22,8 @@ public class ConnectionCreator {
         }
     }
 
+    // This returns a new connection with the required password and user parameters in a url string it also throws
+    // an Exception if the connection fails.
     public Connection getConnection() throws Exception{
 
         // connection to webhost
@@ -39,6 +44,10 @@ public class ConnectionCreator {
                 getConnection("jdbc:mysql://localhost/stratek?user=root&password=toor&useUnicode=true&characterEncoding=UTF-8");
                 */
 
-
+        // connection to localhost; pw=
+        /*
+        return connection = DriverManager.
+                getConnection("jdbc:mysql://localhost/stratek?user=root&password=&useUnicode=true&characterEncoding=UTF-8");
+        */
     }
 }

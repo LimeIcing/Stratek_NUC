@@ -18,3 +18,9 @@ SELECT
     category
 FROM products
 ORDER BY category, name;
+
+CREATE VIEW order_list AS
+SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean, product_orders.quantity
+FROM orders
+JOIN product_orders ON id=product_orders.order_id
+ORDER BY id;

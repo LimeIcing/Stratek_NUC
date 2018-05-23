@@ -6,7 +6,6 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 import strateknuc.lasec.Interfaces.CategoryRepositoryInterface;
 import strateknuc.lasec.Models.CategoryModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +20,7 @@ public class CategoryRepository implements CategoryRepositoryInterface {
     @Override
     public List<CategoryModel> get() {
         List<CategoryModel> categories = new ArrayList<>();
-
         String sql = "SELECT name FROM categories";
-
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {

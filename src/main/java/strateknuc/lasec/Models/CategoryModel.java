@@ -1,9 +1,11 @@
 package strateknuc.lasec.Models;
 
 public class CategoryModel {
+
     private String name;
 
     public CategoryModel() {
+
     }
 
     public CategoryModel(String name) {

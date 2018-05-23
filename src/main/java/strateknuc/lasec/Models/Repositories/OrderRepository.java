@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.ProductOrderModel;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +19,6 @@ public class OrderRepository implements OrderRepositoryInterface {
     // AUTHOR(S): ECS
     @Override
     public void addOrderToDatabase(String customerName, String customerEmail, List<ProductModel> productList) {
-        System.out.println(customerName + "-" + customerEmail);
-
         String insertOrderIntoDb = "INSERT INTO orders(customer_name, customer_email) " +
                 "VALUE('" + customerName + "', '" + customerEmail + "')";
 
@@ -37,8 +34,7 @@ public class OrderRepository implements OrderRepositoryInterface {
         SqlRowSet rs = jdbc.queryForRowSet(getOrderIdFromDb);
         rs.next();
         int orderId = rs.getInt(1);
-
-        String insertIntoProductOrder = "";
+        String insertIntoProductOrder;
 
         for (ProductModel product : productList) {
             insertIntoProductOrder = "INSERT INTO product_orders(order_id, product_ean, quantity) " +
@@ -47,25 +43,19 @@ public class OrderRepository implements OrderRepositoryInterface {
         }
     }
 
-    // AUTHOR: LKB
+    // AUTHOR(S): LKB
     // Retrieves a list of orders from the database
     @Override
     public List<ProductOrderModel> getOrdersFromDatabase() {
-
         List<ProductOrderModel> orders = new ArrayList<>();
-
-        String sql = "SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean, " +
-                "product_orders.quantity " +
-                "FROM orders " +
-                "FULL JOIN product_orders ON id=product_orders.order_id " +
-                "ORDER BY id";
-
+        String sql = "SELECT * FROM order_list";
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {
             orders.add(new ProductOrderModel(rs.getInt(1), rs.getDate(2), rs.getString(3),
                     rs.getString(4), rs.getString(5), rs.getInt(6)));
         }
+
         return orders;
     }
 }

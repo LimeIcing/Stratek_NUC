@@ -11,11 +11,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import strateknuc.lasec.Interfaces.OrderRepositoryInterface;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.OrderModel;
-import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
-//Author: SS, AP, LKB, ECS, CPS
+// AUTHOR(S): SS, AP, LKB, ECS, CPS
 @Controller
 public class OrderController {
 
@@ -27,9 +26,7 @@ public class OrderController {
 
     private OrderModel shoppingCart = new OrderModel();
 
-    //------KØB USE CASE------
-    //TODO: change url path to køb button's name
-    //når man trykker på køb så bliver produktet tilføjet til kurven
+    // When you click 'køb', the product is added to shoppingCart
     @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
     public String addToOrderModel(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
         rdt.addFlashAttribute("message", "Lagt i Kurv");
@@ -38,69 +35,57 @@ public class OrderController {
 
         return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
+
+    // AUTHOR(S): CPS
     // Post method for when you are on the product/details page and press Buy
-    //CPS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
     public String addToOrderModel2(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
         rdt.addFlashAttribute("message", "Lagt i Kurv");
         shoppingCart.addProduct(productRepository.get(ean));
         shoppingCart.setTotalPrice();
+
         return "redirect:/product/details/" + productRepository.get(ean).getEan();
     }
 
-    //hver gang man går ind på indkøbskurv siden
-    //så bliver denne metode kaldt
+    // Every time you go to the page for the cart, this method is called
     @RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
-    public String showCart(Model model)
-    {
+    public String showCart(Model model) {
         model.addAttribute("productList",shoppingCart.getProductlist());
         model.addAttribute("totalPrice", shoppingCart.getTotalPrice());
 
         return "/shoppingCart";
     }
-    //hver gang man går ind på indkøbskurv siden
-    //så bliver denne metode kaldt
+
+    // Pre : shopping cart must have elements inside
+    // Post: one or more elements inside shopping cart
+    // When you click 'checkout' in the cart, this method is called
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
-    public String showCheckOut(Model model)
-    {
+    public String showCheckOut(Model model) {
         model.addAttribute("productList",shoppingCart.getProductlist());
         model.addAttribute("totalPrice",shoppingCart.getTotalPrice());
         model.addAttribute("order",shoppingCart);
+
         return "/checkout";
     }
 
-    //TODO: look at return statement, change html if neccessary
-    //------CHECKOUT USE CASE-----
-    //pre : shopping cart must have elements inside
-    //post: one or more elements inside shopping cart
-    //når man trykker på checkout knappen inde i shoppingcart
+    // When you click 'Bekræft køb' in checkout, this method is called, the cart is saved in the DB as an order and
+    // product_orders, and you get redirected to the front page
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public String checkout(@ModelAttribute OrderModel orderModel)
-    {
-        for (ProductModel p : shoppingCart.getProductlist()
-             ) {
-            System.out.println(p.getEan());
-
-        }
+    public String checkout(@ModelAttribute OrderModel orderModel) {
         orderRepository.addOrderToDatabase(orderModel.getCustomerName(),
                 orderModel.getCustomerEmail(), shoppingCart.getProductlist());
-
-
         shoppingCart.clearOrder();
-        return "/index";
 
+        return "/index";
     }
 
-    // AUTHOR: LKB
+    // AUTHOR(S): LKB
     // Mapping for when you click on "Se Ordre" on the admin site
     // Retrieves a list of orders and creates a model of them
     @RequestMapping(value = "/admin/showOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
-
         model.addAttribute("orders", orderRepository.getOrdersFromDatabase());
+
         return "/admin/showOrders";
     }
-
-
-
 }
