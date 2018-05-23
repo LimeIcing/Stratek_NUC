@@ -34,17 +34,20 @@
                 <td th:text="${'kr. ' + product.price}"></td>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th style="border: none"></th>
+                <th style="border: none"></th>
+                <th style="border: none"></th>
+                <th style="border: none"></th>
+                <th style="border: none"></th>
+                <th style="border: none"></th>
             </tr>
-            <tr  th:object="${totalPrice}">
-                <td style="text-align: right">Total</td>
-                <td th:text="'kr. ' + ${totalPrice}"></td>
-                <td><a href="/checkout">Checkout</a></td>
+            <tr  th:object="${totalPrice}" style="border: none">
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+                <td style="border: none"></td>
+                <td style="text-align: right;border: none; border-bottom: 1px solid #dddddd">Total</td>
+                <td th:text="'kr. ' + ${totalPrice}" style="border:none;border-bottom: 1px solid #dddddd"></td>
+                <td style="border: none; border-bottom: 1px solid #dddddd; text-align: center"><a href="/checkout">Checkout</a></td>
             </tr>
         </table>
     </div>
