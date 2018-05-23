@@ -45,10 +45,10 @@ public class ProductController {
 
         try {
             productRepository.createProduct(productModel);
-            msg = "Vare oprettet: " + productModel.getName() + ", " + productModel.getEan();
+            msg = "Vare oprettet. Navn: " + productModel.getName() + ", EAN nr.: " + productModel.getEan();
         }
         catch (SQLIntegrityConstraintViolationException e) {
-            msg = "Product already exists, please try again.";
+            msg = "Varen med EAN: " + productModel.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
         }
 
         rdt.addFlashAttribute("message", msg);
