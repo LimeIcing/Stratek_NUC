@@ -41,7 +41,7 @@ public class ProductController {
     // This is called when you create a new product via the create page
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
     public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
-        String msg = "";
+        String msg;
 
         try {
             productRepository.createProduct(productModel);
