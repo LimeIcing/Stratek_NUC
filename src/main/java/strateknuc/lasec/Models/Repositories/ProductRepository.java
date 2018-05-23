@@ -1,7 +1,5 @@
 package strateknuc.lasec.Models.Repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import strateknuc.lasec.ConnectionCreator;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
