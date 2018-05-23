@@ -7,7 +7,6 @@ import strateknuc.lasec.Models.ProductModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,9 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): AP, LKB, ECS
     @Override
-    public String createProduct(ProductModel p) throws SQLException {
+    public String createProduct(ProductModel p) {
+        PreparedStatement preparedStatement = null;
+
         // Auto-corrects short EAN numbers
         while (p.getEan().length() < 13) {
             p.setEan("0" + p.getEan());
@@ -28,17 +29,25 @@ public class ProductRepository implements ProductRepositoryInterface {
         System.out.println("creating statement for EAN=" + p.getEan());
         String createString = "INSERT INTO products VALUES(?, ?, ?, ?, ?, ?, ?)";
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().prepareStatement(createString);
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().prepareStatement(createString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("creating product with EAN=" + p.getEan());
-        preparedStatement.setString(1,p.getEan());
-        preparedStatement.setString(2,p.getManufacturer());
-        preparedStatement.setString(3,p.getName());
-        preparedStatement.setInt(4,p.getQuantity());
-        preparedStatement.setDouble(5,p.getPrice());
-        preparedStatement.setString(6,p.getCategory());
-        preparedStatement.setString(7,p.getDescription());
+        try {
+            System.out.println("creating product with EAN=" + p.getEan());
+            preparedStatement.setString(1, p.getEan());
+            preparedStatement.setString(2, p.getManufacturer());
+            preparedStatement.setString(3, p.getName());
+            preparedStatement.setInt(4, p.getQuantity());
+            preparedStatement.setDouble(5, p.getPrice());
+            preparedStatement.setString(6, p.getCategory());
+            preparedStatement.setString(7, p.getDescription());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         String msg;
 
@@ -46,88 +55,140 @@ public class ProductRepository implements ProductRepositoryInterface {
             System.out.println("executing...");
             preparedStatement.executeUpdate();
             msg = "Produkt oprettet. Navn: " + p.getName() + ", EAN nr.: " + p.getEan();
-        } catch (SQLIntegrityConstraintViolationException e) {
+        } catch (SQLException e) {
             msg = "Produktet med EAN: " + p.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
         }
 
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return msg;
     }
 
     // AUTHOR(S): ECS, AP
     @Override
-    public void updateProduct(ProductModel p) throws SQLException{
+    public void updateProduct(ProductModel p) {
         System.out.println("creating update statement for EAN=" + p.getEan());
         String updateString = "UPDATE products SET manufacturer = ?, name = ?, quantity = ?, "
                 + "price = ?, category = ?, description = ? WHERE ean = ?";
+        PreparedStatement preparedStatement = null;
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().
-                prepareStatement(updateString);
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().
+                    prepareStatement(updateString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("updating product with EAN=" + p.getEan());
-        preparedStatement.setString(1,p.getManufacturer());
-        preparedStatement.setString(2,p.getName());
-        preparedStatement.setInt(3,p.getQuantity());
-        preparedStatement.setDouble(4,p.getPrice());
-        preparedStatement.setString(5,p.getCategory());
-        preparedStatement.setString(6,p.getDescription());
-        preparedStatement.setString(7,p.getEan());
+        try {
+            System.out.println("updating product with EAN=" + p.getEan());
+            preparedStatement.setString(1, p.getManufacturer());
+            preparedStatement.setString(2, p.getName());
+            preparedStatement.setInt(3, p.getQuantity());
+            preparedStatement.setDouble(4, p.getPrice());
+            preparedStatement.setString(5, p.getCategory());
+            preparedStatement.setString(6, p.getDescription());
+            preparedStatement.setString(7, p.getEan());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("executing...");
-        preparedStatement.executeUpdate();
+        try {
+            System.out.println("executing...");
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     // AUTHOR(S): ECS, CPS, LKB
     @Override
-    public void deleteProduct(String ean) throws Exception {
+    public void deleteProduct(String ean) {
         System.out.println("creating delete statement for EAN=" + ean);
         String deleteString = "DELETE FROM products WHERE ean = ?";
+        PreparedStatement preparedStatement = null;
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().
-                prepareStatement(deleteString);
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().prepareStatement(deleteString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("deleting product with EAN=" + ean);
-        preparedStatement.setString(1, ean);
+        try {
+            System.out.println("deleting product with EAN=" + ean);
+            preparedStatement.setString(1, ean);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("executing...");
-        preparedStatement.executeUpdate();
+        try {
+            System.out.println("executing...");
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 
     // AUTHOR(S): LKB
     @Override
-    public ProductModel get(String ean) throws Exception{
+    public ProductModel get(String ean) {
         System.out.println("creating select statement for EAN=" + ean);
         String getProductString = "SELECT * FROM products WHERE ean = ?";
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        ProductModel product = null;
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().
-                prepareStatement(getProductString);
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().prepareStatement(getProductString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
+        try {
+            System.out.println("selecting product with EAN=" + ean);
+            preparedStatement.setString(1, ean);
+            rs = preparedStatement.executeQuery();
+            rs.next();
+            product = new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
+                    rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("selecting product with EAN=" + ean);
-        preparedStatement.setString(1, ean);
-        ResultSet rs = preparedStatement.executeQuery();
-        rs.next();
-        ProductModel product = new ProductModel(rs.getString(1), rs.getString(3), rs.getString(6),
-                rs.getString(2), rs.getInt(4), rs.getDouble(5), rs.getString(7));
+        try {
+            System.out.println("closing resultset...");
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-
-        System.out.println("closing resultset...");
-        rs.close();
-
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return product;
     }
@@ -135,31 +196,50 @@ public class ProductRepository implements ProductRepositoryInterface {
     // AUTHOR(S): LKB, ECS, CPS
     // Returns a list of products from the db
     @Override
-    public List<ProductModel> getList(String category) throws Exception {
-
+    public List<ProductModel> getList(String category) {
         List<ProductModel> products = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
 
         System.out.println("creating select statement for product(s) with category=" + category);
         String getProductsString = "SELECT * FROM product_list WHERE category = ?";
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().
-                prepareStatement(getProductsString);
-
-
-        System.out.println("selecting product(s) with category=" + category);
-        preparedStatement.setString(1, category);
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(4)));
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().prepareStatement(getProductsString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("closing resultset...");
-        rs.close();
+        try {
+            System.out.println("selecting product(s) with category=" + category);
+            preparedStatement.setString(1, category);
+            rs = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            while (rs.next()) {
+                products.add(new ProductModel(rs.getString(1), rs.getDouble(2), rs.getString(4)));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println("closing resultset...");
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return products;
     }
@@ -167,29 +247,50 @@ public class ProductRepository implements ProductRepositoryInterface {
     // AUTHOR(S): LKB, ECS
     // Returns a list of products from the db
     @Override
-    public List<ProductModel> getAdminList() throws Exception {
+    public List<ProductModel> getAdminList() {
         List<ProductModel> products = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
 
         System.out.println("creating select statement for all products");
         String getAdminProductsString = "SELECT * FROM product_list_admin";
 
-        System.out.println("getting connection...");
-        PreparedStatement preparedStatement = connectionCreator.getConnection().
-                prepareStatement(getAdminProductsString);
-
-        System.out.println("selecting all products");
-        ResultSet rs = preparedStatement.executeQuery();
-
-        while (rs.next()) {
-            products.add(new ProductModel(rs.getString(1), rs.getString(2), rs.getString(5), "",
-                    rs.getInt(3), rs.getDouble(4), ""));
+        try {
+            System.out.println("getting connection...");
+            preparedStatement = connectionCreator.getConnection().prepareStatement(getAdminProductsString);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
-        System.out.println("closing resultset...");
-        rs.close();
+        try {
+            System.out.println("selecting all products");
+            rs = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
-        System.out.println("closing connection...");
-        preparedStatement.close();
+        try {
+            while (rs.next()) {
+                products.add(new ProductModel(rs.getString(1), rs.getString(2), rs.getString(5),
+                        "", rs.getInt(3), rs.getDouble(4), ""));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println("closing resultset...");
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            System.out.println("closing connection...");
+            preparedStatement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return products;
     }
