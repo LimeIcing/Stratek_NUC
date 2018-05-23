@@ -30,23 +30,12 @@ public class ConnectionCreator {
                 getConnection("jdbc:mysql://den1.mysql6.gear.host/stratekdb?user=stratekdb&password=stratekDB123!&useUnicode=true&characterEncoding=UTF-8");
         */
 
-            // connection to localhost; pw=1234
-        /*
+            // connection to localhost
+
         connection = DriverManager.
-                getConnection("jdbc:mysql://localhost/stratek?user=root&password=1234&useUnicode=true&characterEncoding=UTF-8");
+                getConnection("jdbc:mysql://localhost/stratek?user=groot&password=iamgroot&useUnicode=true&characterEncoding=UTF-8");
 
 
-        // connection to localhost; pw=toor
-        */
-            connection = DriverManager.
-                    getConnection("jdbc:mysql://localhost/stratek?user=root&password=toor&useUnicode=true&characterEncoding=UTF-8");
-            //*/
-
-            // connection to localhost; pw=
-        /*
-        connection = DriverManager.
-                getConnection("jdbc:mysql://localhost/stratek?user=root&password=&useUnicode=true&characterEncoding=UTF-8");
-        */
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
