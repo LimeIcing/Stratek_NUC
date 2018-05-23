@@ -2,6 +2,7 @@ package strateknuc.lasec;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 //AUTHOR: AP
 public class ConnectionCreator {
@@ -24,7 +25,7 @@ public class ConnectionCreator {
 
     // This returns a new connection with the required password and user parameters in a url string it also throws
     // an Exception if the connection fails.
-    public Connection getConnection() throws Exception{
+    public Connection getConnection() {
 
         // connection to webhost
         /*
@@ -33,16 +34,16 @@ public class ConnectionCreator {
         */
 
         // connection to localhost; pw=1234
-
+        /*
         return connection = DriverManager.
                 getConnection("jdbc:mysql://localhost/stratek?user=root&password=1234&useUnicode=true&characterEncoding=UTF-8");
 
 
         // connection to localhost; pw=toor
-        /*
+        */
         return connection = DriverManager.
                 getConnection("jdbc:mysql://localhost/stratek?user=root&password=toor&useUnicode=true&characterEncoding=UTF-8");
-                */
+        //*/
 
         // connection to localhost; pw=
         /*

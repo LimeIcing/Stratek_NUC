@@ -6,6 +6,8 @@ import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
     // AUTHOR(S): AP, LKB, ECS
     @Override
-    public void createProduct(ProductModel p) throws Exception {
+    public String createProduct(ProductModel p) throws SQLException {
         // Auto-corrects short EAN numbers
         while (p.getEan().length() < 13) {
             p.setEan("0" + p.getEan());
@@ -38,16 +40,25 @@ public class ProductRepository implements ProductRepositoryInterface {
         preparedStatement.setString(6,p.getCategory());
         preparedStatement.setString(7,p.getDescription());
 
-        System.out.println("executing...");
-        preparedStatement.executeUpdate();
+        String msg;
+
+        try {
+            System.out.println("executing...");
+            preparedStatement.executeUpdate();
+            msg = "Produkt oprettet. Navn: " + p.getName() + ", EAN nr.: " + p.getEan();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            msg = "Produktet med EAN: " + p.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
+        }
 
         System.out.println("closing connection...");
         preparedStatement.close();
+
+        return msg;
     }
 
     // AUTHOR(S): ECS, AP
     @Override
-    public void updateProduct(ProductModel p) throws Exception {
+    public void updateProduct(ProductModel p) throws SQLException{
         System.out.println("creating update statement for EAN=" + p.getEan());
         String updateString = "UPDATE products SET manufacturer = ?, name = ?, quantity = ?, "
                 + "price = ?, category = ?, description = ? WHERE ean = ?";

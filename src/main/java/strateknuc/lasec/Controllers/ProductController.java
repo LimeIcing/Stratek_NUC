@@ -14,8 +14,6 @@ import strateknuc.lasec.Models.ProductModel;
 import strateknuc.lasec.Models.Repositories.CategoryRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 @Controller
 public class ProductController {
 
@@ -40,16 +38,8 @@ public class ProductController {
     // create.html POST REQUEST
     // This is called when you create a new product via the create page
     @RequestMapping(value = "/admin/create", method = RequestMethod.POST)
-    public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception {
-        String msg;
-
-        try {
-            productRepository.createProduct(productModel);
-            msg = "Produkt oprettet. Navn: " + productModel.getName() + ", EAN nr.: " + productModel.getEan();
-        }
-        catch (SQLIntegrityConstraintViolationException e) {
-            msg = "Produktet med EAN: " + productModel.getEan() + " eksisterer allerede og kan derfor ikke oprettes.";
-        }
+    public String create(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) {
+        String msg = productRepository.createProduct(productModel);
 
         rdt.addFlashAttribute("message", msg);
 
@@ -58,7 +48,7 @@ public class ProductController {
 
     // AUTHOR(S): CPS
     @RequestMapping(value = "/admin/editProduct/{ean}", method = RequestMethod.GET)
-    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) throws Exception {
+    public String edit(Model model, @PathVariable(value = "ean") String ean, Model categoryModel) {
         model.addAttribute("product", productRepository.get(ean));
         categoryModel.addAttribute("options", categoryRepository.get());
 
@@ -69,7 +59,7 @@ public class ProductController {
     // editProduct.html POST REQUEST
     // This is called when a product is edited via the edit page
     @RequestMapping(value = "/admin/editProduct", method = RequestMethod.POST)
-    public String edit(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) throws Exception{
+    public String edit(@ModelAttribute ProductModel productModel, RedirectAttributes rdt) {
         rdt.addFlashAttribute("message", "Vare redigeret");
         productRepository.updateProduct(productModel);
 
@@ -79,7 +69,7 @@ public class ProductController {
     // AUTHOR(S): CPS, ECS
     // Mapping for Delete page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.GET)
-    public String delete(Model model, @PathVariable(value = "ean") String ean) throws Exception {
+    public String delete(Model model, @PathVariable(value = "ean") String ean) {
         model.addAttribute("product", productRepository.get(ean));
 
         return "/admin/delete";
@@ -89,7 +79,7 @@ public class ProductController {
     // editProduct.html POST REQUEST
     // This is called when you delete a product via the delete confirmation page
     @RequestMapping(value = "/admin/delete/{ean}", method = RequestMethod.POST)
-    public String delete(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) throws Exception {
+    public String delete(@PathVariable(value = "ean") String ean, RedirectAttributes rdt) {
         rdt.addFlashAttribute("message", "Vare slettet");
         productRepository.deleteProduct(ean);
 
@@ -98,7 +88,7 @@ public class ProductController {
 
     // AUTHOR(S): LKB, ECS, CPS
     @RequestMapping(value = "/product/category/{category}", method = RequestMethod.GET)
-    public String productIndex (Model model, @PathVariable(value = "category") String category) throws Exception {
+    public String productIndex (Model model, @PathVariable(value = "category") String category) {
         model.addAttribute("products", productRepository.getList(category));
 
         return "/product/category";
@@ -106,7 +96,7 @@ public class ProductController {
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/admin/editList", method = RequestMethod.GET)
-    public String adminProducts (Model model) throws Exception {
+    public String adminProducts (Model model) {
         model.addAttribute("products", productRepository.getAdminList());
 
         return "/admin/editList";
@@ -114,7 +104,7 @@ public class ProductController {
 
     // AUTHOR(S): ECS
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.GET)
-    public String productDetails(Model model, @PathVariable(value = "ean") String ean) throws Exception {
+    public String productDetails(Model model, @PathVariable(value = "ean") String ean) {
         model.addAttribute("product", productRepository.get(ean));
 
         return "/product/details";
