@@ -5,9 +5,11 @@
     <title>Produktliste</title>
 </head>
 <body>
+<!-- imports the fragment sidenav, from the adminStyle page. -->
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
     <h1>Redigér Produkt</h1>
+    <!-- display a messege when redirected  -->
     <div id="hideMe" th:if="${message}" th:text="${message}"/>
     <table id="products">
         <tr>
@@ -19,6 +21,7 @@
             <th></th>
             <th></th>
         </tr>
+        <!-- display all products in the data base -->
         <tr th:each="product : ${products}">
             <td th:text="${product.category}"></td>
             <td th:text="${product.name}"></td>
@@ -28,15 +31,12 @@
             <td><a id="edit" th:href="${'/admin/editProduct/' + product.ean}" title="Rediger"><i  class="fas fa-pencil-alt fa-2x"></i></a></td>
             <td><a id="delete" th:href="${'/admin/delete/' + product.ean}" title="Slet"><i  class="fas fa-trash-alt fa-2x"></i></a></td>
         </tr>
-
     </table>
-
 </div>
-
-
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="/fragments/adminStyle :: adminStyle">
-
 </style>
+<!-- script that imports immeges form fontawesome in order to display the trashcan and pencin on the edit page -->
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 </html>

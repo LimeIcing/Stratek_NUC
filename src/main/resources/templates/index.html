@@ -3,10 +3,12 @@
 <head>
     <title>Stratek</title>
 </head>
-
 <body>
+<!-- Start of the container witch holds all the page content -->
 <div id="container">
+    <!-- imports the fragment nav_top, from the pagestyle page. -->
     <div th:include="fragments/pageStyle :: nav_top"></div>
+    <!-- displays the menu on the index page -->
     <div id="content">
         <div class="grid-container">
             <a href="product/category/Mus">Mus</a>
@@ -16,9 +18,9 @@
             <a href="product/category/SSD">SSD</a>
             <a href="product/category/Tastatur">Tastatur</a>
         </div>
-
     </div>
 </div>
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="fragments/pageStyle :: style"></style>
 </html>

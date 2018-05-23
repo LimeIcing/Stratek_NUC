@@ -15,11 +15,6 @@ public class HomeController {
         return "/index";
     }
 
-    @RequestMapping(value = "/product/index", method = RequestMethod.GET)
-    public String productIndex() {
-        return "/product/index";
-    }
-
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
     public String adminIndex()
     {

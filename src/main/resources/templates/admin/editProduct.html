@@ -2,17 +2,22 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <!-- Displays the product ean number in the titel -->
     <title th:text="'Redigér produkt - ' + ${product.ean}"></title>
 </head>
 <body>
+<!-- imports the fragment sidenav, from the adminStyle page. -->
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
     <h1>Redigér Produkt</h1>
+    <!-- Displays the old values from the product and inputs the data so you can edit it -->
+    <!-- label holds the old value, input fields hold the edit data -->
     <form id="form" th:object="${product}" th:action="@{/admin/editProduct}" method="POST">
         <div class="grid-container">
             <label>EAN</label>
                 <label th:text="${product.ean}" style="grid-column: span 2"></label>
                     <input type="text" th:field="*{ean}" required style="display: none"/>
+            <!-- Makes a dropdown to select only the categorise that are in use -->
             <label>Kategori</label>
                 <label th:text="${product.category}"></label>
                     <select th:field="*{category}">
@@ -38,13 +43,10 @@
                     <textarea style="width: 100%; max-width: 400px" type="text" th:field="*{description}" maxlength="16000"/>
         </div>
         <input type="submit" value="Gem"/>
-
     </form>
-
 </div>
-
-
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="/fragments/adminStyle :: adminStyle">
 
 </style>

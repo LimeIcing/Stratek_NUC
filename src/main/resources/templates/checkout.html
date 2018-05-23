@@ -3,9 +3,10 @@
 <head>
     <title>Bekræft Køb</title>
 </head>
-
 <body>
+<!-- Start of the container witch holds all the page content -->
 <div id="container">
+    <!-- imports the fragment nav_top, from the pagestyle page. -->
     <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
         <table id="products">
@@ -17,13 +18,14 @@
                 <th>Antal</th>
                 <th>Pris</th>
             </tr>
+            <!-- takes the product from the order controller in the productList and display the values -->
             <tr th:each="product : ${productList}">
                 <td th:text="${product.ean}"></td>
                 <td th:text="${product.manufacturer} + ' ' + ${product.name}"></td>
                 <td th:text="${product.category}"></td>
-                <div th:with="result=${product.price / product.quantity}">
-                    <td th:text="'kr. ' + ${result}"></td>
-                </div>
+                    <div th:with="result=${product.price / product.quantity}">
+                        <td th:text="'kr. ' + ${result}"></td>
+                     </div>
                 <td th:text="${product.quantity}"></td>
                 <td th:text="'kr. ' + ${product.price}"></td>
             </tr>
@@ -44,14 +46,15 @@
                 <td th:object="${totalPrice}" th:text="'kr. ' + ${totalPrice}"></td>
             </tr>
         </table>
+        <!-- Calls the OrderController when Post is called. Inserts the data into the database -->
         <form id="form" th:action="@{/checkout}" method="POST" th:object="${order}">
             <p>Indtast Navn:</p> <input type="text" th:field="${order.customerName}" required /><br/>
             <p>Indtast Email:</p> <input type="text" th:field="${order.customerEmail}" required/><br/>
             <input type="submit" value="Bekræft Køb"/>
         </form>
     </div>
-
 </div>
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="fragments/pageStyle :: style"></style>
 </html>

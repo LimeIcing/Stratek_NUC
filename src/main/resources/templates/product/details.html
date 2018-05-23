@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <!-- sets the titel to the manufacture name and product name-->
     <title th:text="${product.manufacturer} + ' ' + ${product.name}"></title>
 </head>
-
 <body>
 <div id="container">
+    <!-- imports the fragment nav_top, from the pagestyle page. -->
     <div th:include="fragments/pageStyle :: nav_top"></div>
-        <div class="row" style="width: 100%">
+
+    <!-- the div row takes the product from the ProductController in the product and display the values -->
+    <div class="row" style="width: 100%">
             <div class="column" style="background-color:#aaa; width: 30%">
                 <p>Billede her</p>
             </div>
@@ -25,21 +28,20 @@
                 <p>Navn: <label th:text="${product.name}"></label></p>
 
                 <p>Kategori: <label th:text="${product.category}"></label></p>
-
             </div>
             <div class="column" style="background-color: #ddd; width: 40%">
                 <p style="margin-left: 33%">Lagerstatus: <label th:text="${product.quantity}"></label></p>
                 <hr style="width: 50%;margin-left: 25%">
+                <!-- Display a messege when you press post and hides is again after 3 sec -->
                 <div id="hideMe" th:if="${message}" th:text="${message}"/>
                 <form th:object="${product}" style="width: 50%;margin-left: 25%" th:action="@{/product/details/} + ${product.ean}" method="POST">
                     <input type="submit" value="Køb" title="Køb">
                 </form>
-
             </div>
         </div>
-
     </div>
 </div>
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="fragments/pageStyle :: style"></style>
 </html>

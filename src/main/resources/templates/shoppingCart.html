@@ -3,11 +3,12 @@
 <head>
     <title>Indkøbskurv</title>
 </head>
-
 <body>
+<!-- Start of the container witch holds all the page content -->
 <div id="container">
     <div th:include="fragments/pageStyle :: nav_top"></div>
     <div id="content">
+        <!-- The table witch contains the products in the shopping cart -->
         <table id="products">
             <tr>
                 <th>EAN</th>
@@ -17,6 +18,7 @@
                 <th>Antal</th>
                 <th>Pris</th>
             </tr>
+            <!-- takes the product from the order controller in the productList and display the values -->
             <tr th:each="product : ${productList}" >
                 <td>
                     <a th:href="${'/product/details/' + product.ean}" th:text="${product.ean}"></a>
@@ -51,8 +53,8 @@
             </tr>
         </table>
     </div>
-
 </div>
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="fragments/pageStyle :: style"></style>
 </html>

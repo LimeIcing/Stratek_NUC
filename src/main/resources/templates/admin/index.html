@@ -5,15 +5,15 @@
     <title>Stratek Admin Page</title>
 </head>
 <body>
+<!-- imports the fragment sidenav, from the adminStyle page. -->
 <div th:include="/fragments/adminStyle :: sidenav"></div>
 <div id="content">
     <h1>Admin Page</h1>
+    <!-- Display the message when you are redirected from pages  -->
     <div id="hideMe" th:if="${message}" th:text="${message}"/>
 </div>
-
-
 </body>
+<!-- Imports the fragment containing the style for the page -->
 <style th:include="/fragments/adminStyle :: adminStyle">
-
 </style>
 </html>
