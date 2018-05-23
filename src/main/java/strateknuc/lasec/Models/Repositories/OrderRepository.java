@@ -48,11 +48,7 @@ public class OrderRepository implements OrderRepositoryInterface {
     @Override
     public List<ProductOrderModel> getOrdersFromDatabase() {
         List<ProductOrderModel> orders = new ArrayList<>();
-        String sql = "SELECT product_orders.order_id, date, customer_name, customer_email, product_orders.product_ean, " +
-                "product_orders.quantity " +
-                "FROM orders " +
-                "FULL JOIN product_orders ON id=product_orders.order_id " +
-                "ORDER BY id";
+        String sql = "SELECT * FROM order_list";
         SqlRowSet rs = jdbc.queryForRowSet(sql);
 
         while (rs.next()) {
