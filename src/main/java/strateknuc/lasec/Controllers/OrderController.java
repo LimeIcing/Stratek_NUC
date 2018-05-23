@@ -31,7 +31,6 @@ public class OrderController {
     public String addToCartFromList(@PathVariable(value = "ean") String ean, RedirectAttributes rdt){
         rdt.addFlashAttribute("message", "Lagt i Kurv");
         shoppingCart.addProduct(productRepository.get(ean));
-        shoppingCart.setTotalPrice();
 
         return "redirect:/product/category/" + productRepository.get(ean).getCategory();
     }
@@ -42,7 +41,6 @@ public class OrderController {
     public String addToCartFromDetails(@PathVariable(value = "ean") String ean, RedirectAttributes rdt){
         rdt.addFlashAttribute("message", "Lagt i Kurv");
         shoppingCart.addProduct(productRepository.get(ean));
-        shoppingCart.setTotalPrice();
 
         return "redirect:/product/details/" + productRepository.get(ean).getEan();
     }

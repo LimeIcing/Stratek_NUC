@@ -33,6 +33,7 @@ public class OrderModel {
         }
         productlist.add(new ProductModel(newProduct.getEan(), newProduct.getName(), newProduct.getCategory(),
                 newProduct.getManufacturer(), 1, newProduct.getPrice(), newProduct.getDescription()));
+        this.setTotalPrice();
     }
 
     /**
