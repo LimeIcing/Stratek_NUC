@@ -14,7 +14,10 @@ import strateknuc.lasec.Models.OrderModel;
 import strateknuc.lasec.Models.Repositories.OrderRepository;
 import strateknuc.lasec.Models.Repositories.ProductRepository;
 
-// AUTHOR(S): SS, AP, LKB, ECS, CPS
+/**
+ * Controller for all the features having to do with ordering a product.
+ * @author SS, AP, LKB, ECS, CPS
+ */
 @Controller
 public class OrderController {
 
@@ -26,7 +29,13 @@ public class OrderController {
 
     private OrderModel shoppingCart = new OrderModel();
 
-    // When you click 'køb', the product is added to shoppingCart
+    /**
+     * POST method for the 'Køb' button on the list of products.
+     * Adds the product to shoppingCart and displays a message saying so on the page.
+     * @param ean A path variable. EAN number of the product used to fetch the wanted product from the DB.
+     * @param rdt A version of Model used to show a message on the page.
+     * @return Redirect mapping to the category page you're already on.
+     */
     @RequestMapping(value = "/product/category/{ean}", method = RequestMethod.POST)
     public String addToCartFromList(@PathVariable(value = "ean") String ean, RedirectAttributes rdt){
         rdt.addFlashAttribute("message", "Lagt i Kurv");
@@ -36,13 +45,12 @@ public class OrderController {
     }
 
     /**
-     *
-     * @param ean
-     * @param rdt
-     * @return Returns path for the details page that you're already on
+     * POST method for when you are on the product/details page and press 'Køb'.
+     * @param ean A path variable. EAN number of the product used to fetch the wanted product from the DB.
+     * @param rdt A version of Model used to show a message on the page.
+     * @return Redirect mapping for the details page that you're already on.
      */
     // AUTHOR(S): CPS
-    // Post method for when you are on the product/details page and press Buy
     @RequestMapping(value = "/product/details/{ean}", method = RequestMethod.POST)
     public String addToCartFromDetails(@PathVariable(value = "ean") String ean, RedirectAttributes rdt){
         rdt.addFlashAttribute("message", "Lagt i Kurv");
@@ -51,29 +59,41 @@ public class OrderController {
         return "redirect:/product/details/" + productRepository.get(ean).getEan();
     }
 
-    // Every time you go to the page for the cart, this method is called
+    /**
+     * GET method called when you click the shopping cart.
+     * @param model The Model that's sent to the view with attributes for the cart's list of product and price sum.
+     * @return The mapping for the shopping cart.
+     */
     @RequestMapping(value = "/shoppingCart", method = RequestMethod.GET)
     public String showCart(Model model) {
-        model.addAttribute("productList",shoppingCart.getProductlist());
+        model.addAttribute("productList", shoppingCart.getProductlist());
         model.addAttribute("totalPrice", shoppingCart.getTotalPrice());
 
         return "/shoppingCart";
     }
 
-    // Pre : shopping cart must have elements inside
-    // Post: one or more elements inside shopping cart
-    // When you click 'checkout' in the cart, this method is called
+    /**
+     * Pre : shopping cart must have elements inside.
+     * Post: one or more elements inside shopping cart.
+     * GET method called when you click 'checkout' in the cart.
+     * @param model The Model that's sent to the view with attributes for the cart and its variables.
+     * @return Mapping for the checkout page.
+     */
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public String showCheckOut(Model model) {
-        model.addAttribute("productList",shoppingCart.getProductlist());
-        model.addAttribute("totalPrice",shoppingCart.getTotalPrice());
-        model.addAttribute("order",shoppingCart);
+        model.addAttribute("productList", shoppingCart.getProductlist());
+        model.addAttribute("totalPrice", shoppingCart.getTotalPrice());
+        model.addAttribute("order", shoppingCart);
 
         return "/checkout";
     }
 
-    // When you click 'Bekræft køb' in checkout, this method is called, the cart is saved in the DB as an order and
-    // product_orders, and you get redirected to the front page
+    /**
+     * POST method called when you click 'Bekræft køb' in checkout.
+     * When it's called, the cart is saved in the DB as rows in orders and product_orders.
+     * @param orderModel The Model containing customer info from the form on the checkout page.
+     * @return The mapping for the front page.
+     */
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
     public String checkout(@ModelAttribute OrderModel orderModel) {
         orderRepository.addOrderToDatabase(orderModel.getCustomerName(),
@@ -83,9 +103,13 @@ public class OrderController {
         return "/index";
     }
 
+    /**
+     * GET method for when you click on "Se Ordre" on the admin site.
+     * Retrieves a list of orders from the DB and gives it to the Model as an attribute.
+     * @param model Model for holding the list of products.
+     * @return The mapping for the list of orders.
+     */
     // AUTHOR(S): LKB
-    // Mapping for when you click on "Se Ordre" on the admin site
-    // Retrieves a list of orders and creates a model of them
     @RequestMapping(value = "/admin/showOrders", method = RequestMethod.GET)
     public String showOrders(Model model) {
         model.addAttribute("orders", orderRepository.getOrdersFromDatabase());

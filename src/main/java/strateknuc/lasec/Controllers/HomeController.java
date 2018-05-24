@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Controller for the most basic of redirecting. Contains no initialized repositories as a result.
+ * Controller for the most basic of mapping. Contains no initialized repositories as a result.
  * @author ECS, AP
  */
 @Controller
