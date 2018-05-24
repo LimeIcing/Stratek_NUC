@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author AP, LKB, ECS, CPS
+ */
 @Repository
 public class ProductRepository implements ProductRepositoryInterface {
 
@@ -17,6 +20,12 @@ public class ProductRepository implements ProductRepositoryInterface {
     private ConnectionCreator connectionCreator = new ConnectionCreator();
 
     // AUTHOR(S): AP, LKB, ECS
+
+    /**
+     * Takes a ProductModel and adds it to the database
+     * @param p A ProductModel
+     * @return A message based on creation success or failure
+     */
     @Override
     public String createProduct(ProductModel p) {
         PreparedStatement preparedStatement = null;
@@ -66,7 +75,12 @@ public class ProductRepository implements ProductRepositoryInterface {
         return msg;
     }
 
-    // AUTHOR(S): ECS, AP
+    // AUTHOR(S): ECS, AP, LKB
+
+    /**
+     * Takes a ProductModel and updates the given product in the database
+     * @param p A ProductModel
+     */
     @Override
     public void updateProduct(ProductModel p) {
         System.out.println("creating update statement for EAN=" + p.getEan());
@@ -98,6 +112,12 @@ public class ProductRepository implements ProductRepositoryInterface {
     }
 
     // AUTHOR(S): ECS, CPS, LKB
+
+    /**
+     * Takes a ean number and deletes the product in the database
+     * with a matching ean number
+     * @param ean The ean number of the product to delete in the database
+     */
     @Override
     public void deleteProduct(String ean) {
         System.out.println("creating delete statement for EAN=" + ean);
@@ -122,6 +142,14 @@ public class ProductRepository implements ProductRepositoryInterface {
     }
 
     // AUTHOR(S): LKB
+
+    /**
+     * Takes a ean number and returns the product from the database
+     * with a matching ean number
+     * @param ean The ean number of the product to retrieve
+     * @return A ProductModel of the of the product in the database
+     * that matches the ean number of the parameter
+     */
     @Override
     public ProductModel get(String ean) {
         System.out.println("creating select statement for EAN=" + ean);
@@ -154,7 +182,12 @@ public class ProductRepository implements ProductRepositoryInterface {
     }
 
     // AUTHOR(S): LKB, ECS, CPS
-    // Returns a list of products from the db
+    /**
+     * Gets a list of products from the database which has the same category
+     * as the parameter
+     * @param category The category name of the products to retrieve
+     * @return a list of products
+     */
     @Override
     public List<ProductModel> getList(String category) {
         List<ProductModel> products = new ArrayList<>();
@@ -189,7 +222,10 @@ public class ProductRepository implements ProductRepositoryInterface {
     }
 
     // AUTHOR(S): LKB, ECS
-    // Returns a list of products from the db
+    /**
+     * Gets a list of all products in the database
+     * @return a list of products
+     */
     @Override
     public List<ProductModel> getAdminList() {
         List<ProductModel> products = new ArrayList<>();
