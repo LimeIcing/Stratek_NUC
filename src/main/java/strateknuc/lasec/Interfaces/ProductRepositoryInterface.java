@@ -3,6 +3,10 @@ package strateknuc.lasec.Interfaces;
 import strateknuc.lasec.Models.ProductModel;
 import java.util.List;
 
+/**
+ * Interface that is implemented in ProductRepository
+ * Check ProductRepository for method descriptions
+ */
 public interface ProductRepositoryInterface {
     String createProduct(ProductModel p);
     void updateProduct(ProductModel p);

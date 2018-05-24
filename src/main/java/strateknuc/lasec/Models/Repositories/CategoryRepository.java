@@ -9,14 +9,19 @@ import strateknuc.lasec.Models.CategoryModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ECS
+ */
 @Repository
 public class CategoryRepository implements CategoryRepositoryInterface {
 
-    // AUTHOR(S): ECS
     @Autowired
     private JdbcTemplate jdbc;
 
-    // AUTHOR(S): ECS
+    /**
+     * Gets a list of categories
+     * @return a list of categories
+     */
     @Override
     public List<CategoryModel> get() {
         List<CategoryModel> categories = new ArrayList<>();
