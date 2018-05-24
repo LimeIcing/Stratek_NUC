@@ -3,9 +3,8 @@ package strateknuc.lasec.Models;
 import java.util.ArrayList;
 
 /**
- * @author AP, SS, L
+ * @author AP, SS, LKB, ECS
  */
-// AUTHOR(S): AP, SS, LKB, ECS
 public class OrderModel {
 
    private String customerName, customerEmail;
@@ -14,16 +13,18 @@ public class OrderModel {
    // Creates an empty ArrayList productlist
    private ArrayList<ProductModel> productlist = new ArrayList<>();
 
-   // Empty Constructor
+    /**
+     * Empty constructor for Spring
+     */
    public OrderModel(){
 
    }
 
+    // AUTHOR(S): LKB, ECS
     /**
      * addProduct takes a ProductModel and adds it to the the productlist
      * If the product is already in the list the quantity is raised by 1
      * and the price is doubled
-     * @author ECS LKB
      * @param newProduct the product the customer wishes to add to the productlist
      */
     public void addProduct(ProductModel newProduct) {
@@ -47,27 +48,52 @@ public class OrderModel {
         setTotalPrice();
     }
 
+    /**
+     * Gets the name of the customer
+     * @return The name of the customer
+     */
     public String getCustomerName() {
         return customerName;
     }
 
+    /**
+     * Sets the name of a customer
+     * @param customerName The name to set it to
+     */
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
+    /**
+     * Gets the email of the customer
+     * @return The email of the customer
+     */
     public String getCustomerEmail() {
         return customerEmail;
     }
 
+    /**
+     * Sets the email of a customer
+     * @param customerEmail The email to set it to
+     */
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
 
+    /**
+     * Gets the total price of an order
+     * @return The total price of an order
+     */
     public double getTotalPrice() {
         return totalPrice;
     }
 
     // AUTHOR(S): ECS
+
+    /**
+     * Sets totalprice to 0 and uses an enhanced for loop to visit every element in the list
+     * of products. For every product it adds its price to totalPRice
+     */
     public void setTotalPrice(){
         this.totalPrice = 0;
 
@@ -76,10 +102,18 @@ public class OrderModel {
         }
     }
 
+    /**
+     * Gets the list of products
+     * @return The list of products
+     */
     public ArrayList<ProductModel> getProductlist() {
         return productlist;
     }
 
+    /**
+     * Sets the list of products
+     * @param productlist The list of products to set it to
+     */
     public void setProductlist(ArrayList<ProductModel> productlist) {
         this.productlist = productlist;
     }
