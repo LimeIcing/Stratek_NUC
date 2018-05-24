@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Interface that is implemented in ProductRepository
  * Check ProductRepository for method descriptions
+ * @author AP, LKB, ECS, CPS
  */
 public interface ProductRepositoryInterface {
     String createProduct(ProductModel p);
