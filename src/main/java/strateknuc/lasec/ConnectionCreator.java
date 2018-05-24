@@ -4,13 +4,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//AUTHOR: AP
+/**
+ * @author AP
+ */
 public class ConnectionCreator {
 
     private Connection connection = null;
 
-    // This constructor makes sure the jdbc driver for preparedStatement is injected and if it isnt, it prints out an
-    // error message
+    /**
+     * This constructor makes sure the jdbc driver for preparedStatement is injected and if it isnt, it prints out an
+     * error message
+     */
     public ConnectionCreator() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -20,8 +24,11 @@ public class ConnectionCreator {
         }
     }
 
-    // This returns a new connection with the required password and user parameters in a url string it also throws
-    // an Exception if the connection fails.
+    /**
+     * returns a new connection with the required password and user parameters in an url string.
+     * it throws an Exception if the connection fails.
+     * @return the desired connection
+     */
     public Connection getConnection() {
         try {
             // connection to webhost
