@@ -27,7 +27,7 @@ public class ProductController {
     private CategoryRepositoryInterface categoryRepository = new CategoryRepository();
 
     /**
-     * GET method called when you click 'Opret produkt' on the admin page.
+     * GET method called when you click 'Create product' on the admin page.
      * @param model Model for holding the empty ProductModel to be filled out in the view.
      * @param categoryModel List of categories used in the drop-down selector in the view.
      * @return The mapping for the creation page.
@@ -132,7 +132,7 @@ public class ProductController {
     }
 
     /**
-     * GETE method called when you click 'Redigér produkt' on the admin page.
+     * GETE method called when you click 'Edit product' on the admin page.
      * @param model Holds the list of all products.
      * @return Mapping for the list of products on the admin page.
      */

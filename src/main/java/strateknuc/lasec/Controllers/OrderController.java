@@ -30,7 +30,7 @@ public class OrderController {
     private OrderModel shoppingCart = new OrderModel();
 
     /**
-     * POST method for the 'Køb' button on the list of products.
+     * POST method for the 'Buy' button on the list of products.
      * Adds the product to shoppingCart and displays a message saying so on the page.
      * @param ean A path variable. EAN number of the product used to fetch the wanted product from the DB.
      * @param rdt A version of Model used to show a message on the page.
@@ -45,7 +45,7 @@ public class OrderController {
     }
 
     /**
-     * POST method for when you are on the product/details page and press 'Køb'.
+     * POST method for when you are on the product/details page and press 'Buy'.
      * @param ean A path variable. EAN number of the product used to fetch the wanted product from the DB.
      * @param rdt A version of Model used to show a message on the page.
      * @return Redirect mapping for the details page that you're already on.
@@ -89,7 +89,7 @@ public class OrderController {
     }
 
     /**
-     * POST method called when you click 'Bekræft køb' in checkout.
+     * POST method called when you click 'Confirm purchase' in checkout.
      * When it's called, the cart is saved in the DB as rows in orders and product_orders.
      * @param orderModel The Model containing customer info from the form on the checkout page.
      * @return The mapping for the front page.
@@ -104,7 +104,7 @@ public class OrderController {
     }
 
     /**
-     * GET method for when you click on "Se Ordre" on the admin site.
+     * GET method for when you click on "See orders" on the admin site.
      * Retrieves a list of orders from the DB and gives it to the Model as an attribute.
      * @param model Model for holding the list of products.
      * @return The mapping for the list of orders.
