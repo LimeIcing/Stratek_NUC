@@ -3,7 +3,7 @@ package strateknuc.lasec.Models;
 import java.util.ArrayList;
 
 /**
- * @author AP, SS, LKB, ECS
+ * @author AP, SS, L
  */
 // AUTHOR(S): AP, SS, LKB, ECS
 public class OrderModel {
