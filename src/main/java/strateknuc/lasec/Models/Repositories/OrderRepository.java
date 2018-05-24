@@ -10,13 +10,22 @@ import strateknuc.lasec.Models.ProductOrderModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ECS, LKB
+ */
 @Repository
 public class OrderRepository implements OrderRepositoryInterface {
 
     @Autowired
     private JdbcTemplate jdbc;
 
-    // AUTHOR(S): ECS
+    // AUTHOR(S): ECS, LKB
+    /**
+     * Adds an order to the database
+     * @param customerName Name of the customer who makes the order
+     * @param customerEmail Email of the customer who makes the order
+     * @param productList The list of products the customer orders
+     */
     @Override
     public void addOrderToDatabase(String customerName, String customerEmail, List<ProductModel> productList) {
         String insertOrderIntoDb = "INSERT INTO orders(customer_name, customer_email) " +
@@ -44,7 +53,10 @@ public class OrderRepository implements OrderRepositoryInterface {
     }
 
     // AUTHOR(S): LKB
-    // Retrieves a list of orders from the database
+    /**
+     * Retrieves a list of orders from the database
+     * @return a list of orders
+     */
     @Override
     public List<ProductOrderModel> getOrdersFromDatabase() {
         List<ProductOrderModel> orders = new ArrayList<>();
