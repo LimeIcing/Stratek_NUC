@@ -4,6 +4,8 @@ import org.springframework.stereotype.Repository;
 import strateknuc.lasec.ConnectionCreator;
 import strateknuc.lasec.Interfaces.ProductRepositoryInterface;
 import strateknuc.lasec.Models.ProductModel;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,9 +17,6 @@ import java.util.List;
  */
 @Repository
 public class ProductRepository implements ProductRepositoryInterface {
-
-    // AUTHOR(S): AP, LKB
-    private ConnectionCreator connectionCreator = new ConnectionCreator();
 
     // AUTHOR(S): AP, LKB, ECS
 
@@ -40,7 +39,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(createString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(createString);
 
             System.out.println("creating product with EAN=" + p.getEan());
             preparedStatement.setString(1, p.getEan());
@@ -90,7 +89,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(updateString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(updateString);
 
             System.out.println("updating product with EAN=" + p.getEan());
             preparedStatement.setString(1, p.getManufacturer());
@@ -126,7 +125,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(deleteString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(deleteString);
 
             System.out.println("deleting product with EAN=" + ean);
             preparedStatement.setString(1, ean);
@@ -160,7 +159,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(getProductString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(getProductString);
 
             System.out.println("selecting product with EAN=" + ean);
             preparedStatement.setString(1, ean);
@@ -199,7 +198,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(getProductsString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(getProductsString);
 
             System.out.println("selecting product(s) with category=" + category);
             preparedStatement.setString(1, category);
@@ -237,7 +236,7 @@ public class ProductRepository implements ProductRepositoryInterface {
 
         try {
             System.out.println("getting connection...");
-            preparedStatement = connectionCreator.getConnection().prepareStatement(getAdminProductsString);
+            preparedStatement = ConnectionCreator.getInstance().getConnection().prepareStatement(getAdminProductsString);
 
             System.out.println("selecting all products");
             rs = preparedStatement.executeQuery();
