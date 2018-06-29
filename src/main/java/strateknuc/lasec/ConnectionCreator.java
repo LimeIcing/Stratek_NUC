@@ -65,7 +65,7 @@ public class ConnectionCreator {
             /*connection = DriverManager.
                     getConnection("jdbc:mysql://localhost/stratek?user="+devUserInfo.getDbUserName()+"&password?"+
                     devUserInfo.getDbPassword()+"&useUnicode=true&characterEncoding=UTF-8");*/
-            
+
             // connection to localhost
         connection = DriverManager.
                 getConnection("jdbc:mysql://localhost/stratek?user=groot&password=iamgroot&useUnicode=true&characterEncoding=UTF-8");
